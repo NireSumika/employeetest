@@ -18,11 +18,5 @@
     <ClCompile Include="源.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="searchEmployee.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="out_employee.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>
