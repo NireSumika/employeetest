@@ -8,6 +8,7 @@ int main();
 
 void search_employee(struct employee *S)
 {
+	system("cls");
 	int choose;
 	do 
 	{
@@ -25,7 +26,7 @@ void search_employee(struct employee *S)
 		puts("         5、按工号查找          ");
 		puts("         0、返回主菜单              ");
 		printf("\n");
-		printf("       请输入你的选择：");
+		printf("         请输入你的选择：");
 		scanf("%d", &choose);
 		switch (choose)
 		{
@@ -45,6 +46,7 @@ void search_employee(struct employee *S)
 
 				break;
 			case 0:
+				system("cls");
 				main();
 			default:
 				printf("\n输入错误，请重新输入\n");
@@ -53,6 +55,6 @@ void search_employee(struct employee *S)
 		}
 		system("pause");
 		system("cls");
-	} while (choose != '-1');
-	main();
+	} while (choose != 0);
+	return;
 }

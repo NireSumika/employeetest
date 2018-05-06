@@ -336,7 +336,7 @@ int main()
 	struct employee *data= (struct employee*)malloc(sizeof(struct employee));
 	data->last = NULL;
 	data->next = NULL;
-	count = readfile(data);//调用读入函数 
+	count = readfile(data);//调用读入函数
 	//do-while循环实现循环使用该功能
 	do {
 		puts("\n");
@@ -355,7 +355,7 @@ int main()
 		puts("         7、显示所有员工信息      ");
 		puts("         0、退出程序              ");
 		printf("\n");
-		printf("       请输入你的选择：");
+		printf("         请输入你的选择：");
 		scanf("%d", &choose);
 		switch (choose)
 		{
@@ -383,9 +383,9 @@ int main()
 			break;
 		case 0:
 			system("cls");
-			puts("\n谢谢使用\n");
+			puts("\n  谢谢使用  \n");
 			system("pause");
-			return 0;
+			exit(0);
 		default:
 			printf("\n输入错误，请重新输入\n");
 			fflush(stdin);//清除choose的值,避免输入非数字后死循环
@@ -393,6 +393,6 @@ int main()
 		}
 		system("pause");
 		system("cls");
-	} while (choose != '-1');
+	} while (choose != -1);
 	return 0;
 }
