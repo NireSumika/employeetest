@@ -10,6 +10,8 @@ int number = 0;
 
 int count = 0;
 
+void search_employee(struct employee *S);
+
 struct employee
 {
 	int number;
@@ -30,7 +32,6 @@ int readfile(struct employee *S)
 	FILE *fp;//定义文件指针
 	struct employee *p = S;
 	struct employee *q = S;
-	struct employee s;
 	if ((fp = fopen("employee.txt", "r")) == NULL)
 	{
 		printf("文件打开失败");
@@ -56,7 +57,7 @@ int readfile(struct employee *S)
 		q->next = p;
 		p->last = q;
 		p->next = NULL;
-		p = (struct employee*)malloc(sizeof(struct employee));
+		q = (struct employee*)malloc(sizeof(struct employee));
 		count++;
 	}
 }
@@ -70,10 +71,6 @@ void writefile(struct employee *S)
 	{
 		printf("文件打开失败");
 		return;
-	}
-	if (count == 0)
-	{
-		printf("没有员工");
 	}
 	//写入数据
 	while (p != NULL)
@@ -94,7 +91,7 @@ void writefile(struct employee *S)
 		if (S[i].role == technician) fprintf(fp, " %d", &S[i].worktime);
 		if (S[i].role == saler)      fprintf(fp, " %lf", &S[i].salesvolume);
 	}*/
-	printf("共写入%d个人的数据\n", count);
+	printf("员工信息已成功添加\n");
 	fclose(fp);
 }
 
@@ -106,16 +103,16 @@ void out_employee(struct employee *S)
 		printf("当前员工表中没有信息！\n");
 		return;
 	}
-	printf("编号\t姓名\t年龄\t性别\t部门\t岗位\t\t工作时间\t销售额\n");
-	if (count != 0) 
+	else
 	{
+		printf("编号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\n");
 		while (p != NULL)
 		{
-			printf("%d\t", p->number);
-			printf("%s\t", p->name);
-			printf("%d\t", p->age);
-			printf("%s\t", p->sex);
-			printf("%s\t", p->department);
+			printf("%-8d", p->number);
+			printf("%-8s", p->name);
+			printf("%-8d", p->age);
+			printf("%-8s", p->sex);
+			printf("%-16s", p->department);
 			int temp = (int)p->role;
 			if (p->role == manager)
 			{
@@ -135,11 +132,11 @@ void out_employee(struct employee *S)
 			}
 			if (p->role == technician)
 			{
-				printf("%d\t", p->worktime);
+				printf("%d", p->worktime);
 			}
 			if (p->role == saler)
 			{
-				printf("\t\t%lf\t", p->salesvolume);
+				printf("\t\t%.2lf", p->salesvolume);
 			}
 			printf("\n");
 			p = p->next;
@@ -218,16 +215,11 @@ void add_employee(struct employee *S)
 			printf("请输入员工销售额:");
 			scanf("%lf", &(S->salesvolume));
 		}
-		if (S->role == salemanager)
-		{
-			//计算部门销售额
-
-		}
 
 		////////////
-
+		writefile(S);
 		int t = 0;
-		printf("输入1 继续添加");
+		printf("输入1继续添加,输入其他结束添加：");
 		scanf("%d", &t);
 		if (t == 1)
 		{
@@ -273,21 +265,19 @@ void add_employee(struct employee *S)
 		printf("请输入员工销售额:");
 		scanf("%lf", &(q->salesvolume));
 	}
-	if (q->role == salemanager)
-	{
-		//计算部门销售额
-	}
 
 	////////////
 
+	writefile(p);
+
 	int t=0;
-	printf("输入1 继续添加");
+	printf("输入1 继续添加，输入其他结束添加：");
 	scanf("%d", &t);
 	if (t == 1)
 	{
 		add_employee(S);
 	}
-	
+	return;
 
 	/*
 	struct employee E;
@@ -350,46 +340,46 @@ int main()
 	//do-while循环实现循环使用该功能
 	do {
 		puts("\n");
-		puts("          员工工资管理系统        ");
+		puts("\n");
+		puts("         员工工资管理系统        ");
 		puts("\n");
 		printf("\n");
-		puts("            功能选择菜单             ");
+		puts("           功能选择菜单             ");
 		puts("\n");
 		puts("         1、添加员工信息          ");
 		puts("         2、查找员工信息          ");
 		puts("         3、修改员工信息          ");
 		puts("         4、删除员工信息          ");
-		puts("         5、显示所有员工信息      ");
-		puts("         6、员工实际工资信息      ");
+		puts("         5、排序功能          ");
+		puts("         6、统计功能          ");
+		puts("         7、显示所有员工信息      ");
 		puts("         0、退出程序              ");
 		printf("\n");
-		printf("         请输入你的选择：");
+		printf("       请输入你的选择：");
 		scanf("%d", &choose);
 		switch (choose)
 		{
 		case 1:
 			add_employee(data);
-			writefile(data);
-			printf("\n员工信息已经添加\n\n");
-
+			
 			break;
 		case 2:
-			//search_employee(data);
-			puts("2\n");
+			search_employee(data);
 			break;
 		case 3:
-			//change_employee(data);
-			puts("3\n");
+
 			break;
 		case 4:
-			//delete_number(data);
-			puts("4\n");
+
 			break;
 		case 5:
-			out_employee(data);
+
 			break;
 		case 6:
-			//calculate_employee(data);
+
+			break;
+		case 7:
+			out_employee(data);
 			break;
 		case 0:
 			system("cls");
