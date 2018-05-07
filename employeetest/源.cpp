@@ -27,18 +27,25 @@ struct employee
 	struct employee *last;
 };
 
-int readfile(struct employee *S)
+struct employee* readfile()
 {
 	FILE *fp;//定义文件指针
-	struct employee *p = S;
-	struct employee *q = S;
+	struct employee *p;
+	
 	if ((fp = fopen("employee.txt", "r")) == NULL)
 	{
 		printf("文件打开失败");
-		return 0;
+		return NULL;
 	}
 	//如果文件打开成功，那么进行读数据
-	while (!feof(fp))
+	p = (struct employee*)malloc(sizeof(struct employee));
+	struct employee* S = p;
+	fread(p, sizeof(struct employee), 1, fp);
+	
+	struct employee *q = p;
+	p = (struct employee*)malloc(sizeof(struct employee));
+	
+	while (fread(p, sizeof(struct employee), 1, fp) > 0)//!feof(fp))
 	{
 		/*fscanf(fp, " %d", &s.number);
 		fscanf(fp, " %s", s.name);
@@ -53,13 +60,18 @@ int readfile(struct employee *S)
 		if (s.role == saler)      fscanf(fp, " %lf", &s.salesvolume);
 		S[count] = s;
 		count++;*/
-		fread(p, 1, sizeof(struct employee), fp);
+		if (count < p->number)
+		{
+			count = p->number;
+		}
 		q->next = p;
 		p->last = q;
 		p->next = NULL;
-		q = (struct employee*)malloc(sizeof(struct employee));
-		count++;
+		p = (struct employee*)malloc(sizeof(struct employee));
+		q = q->next;
+		
 	}
+	return S;
 }
 
 void writefile(struct employee *S)
@@ -179,12 +191,14 @@ void out_employee(struct employee *S)
 	}
 }
 
-void add_employee(struct employee *S)
+struct employee* add_employee(struct employee *S)
 {
 	struct employee *p = S;
-	if (S->last == NULL)
+	if (S == NULL)
 	{
+		S = (struct employee*)malloc(sizeof(struct employee));
 		S->next = NULL;
+		S->last = NULL;
 		S->number = ++count;
 		printf("员工编号为：%d", S->number);
 		printf("\n");
@@ -217,7 +231,7 @@ void add_employee(struct employee *S)
 		}
 
 		////////////
-		writefile(S);
+		//writefile(S);
 		int t = 0;
 		printf("输入1继续添加,输入其他结束添加：");
 		scanf("%d", &t);
@@ -225,7 +239,7 @@ void add_employee(struct employee *S)
 		{
 			add_employee(S);
 		}
-		return;
+		return S;
 	}
 	while (p->next != NULL)
 	{
@@ -268,7 +282,7 @@ void add_employee(struct employee *S)
 
 	////////////
 
-	writefile(p);
+	//writefile(p);
 
 	int t=0;
 	printf("输入1 继续添加，输入其他结束添加：");
@@ -277,7 +291,7 @@ void add_employee(struct employee *S)
 	{
 		add_employee(S);
 	}
-	return;
+	return S;
 
 	/*
 	struct employee E;
@@ -333,10 +347,8 @@ void add_employee(struct employee *S)
 int main()
 {
 	int choose;
-	struct employee *data= (struct employee*)malloc(sizeof(struct employee));
-	data->last = NULL;
-	data->next = NULL;
-	count = readfile(data);//调用读入函数
+	struct employee *data= NULL;
+	data = readfile();//调用读入函数
 	//do-while循环实现循环使用该功能
 	do {
 		puts("\n");
@@ -360,8 +372,9 @@ int main()
 		switch (choose)
 		{
 		case 1:
-			add_employee(data);
-			
+
+			data = add_employee(data);
+			writefile(data);
 			break;
 		case 2:
 			search_employee(data);
