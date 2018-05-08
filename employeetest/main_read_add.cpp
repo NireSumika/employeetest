@@ -202,12 +202,10 @@ struct employee * add_employee(struct employee *S)
 
 int main()
 {
+	//welcomePage();
 	int choose;
-	welcome_page;
 	struct employee *data= NULL;
 	data = readfile();//调用读入函数
-	//do-while循环实现循环使用该功能
-	
 	do {
 		puts("\n");
 		puts("         员工工资管理系统        ");
@@ -231,7 +229,6 @@ int main()
 		{
 		case 1:
 			data = add_employee(data);
-			//writefile(data);
 			break;
 		case 2:
 			if (data == NULL)
@@ -255,10 +252,6 @@ int main()
 				break;
 			}
 			data = delete_employee(data);
-			/*puts("员工信息已更新!");
-			puts("正在保存更改的信息...");
-			writefile(data);
-			readfile();*/
 			break;
 		case 5:
 
@@ -267,6 +260,10 @@ int main()
 
 			break;
 		case 7:
+			if (data == NULL)
+			{
+				printf("当前员工表中没有信息！\n");
+			}
 			out_employee(data);
 			break;
 		case 8:
@@ -276,7 +273,7 @@ int main()
 			writefile(data);
 			system("pause");
 			system("cls");
-			puts("\n  谢谢使用  \n");
+			puts("\n          谢谢使用  \n");
 			system("pause");
 			exit(0);
 		default:

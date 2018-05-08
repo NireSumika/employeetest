@@ -11,7 +11,13 @@ void out_employee(struct employee *S)
 	}
 	else
 	{
-		printf("编号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\n");
+		system("cls");
+		puts("\n");
+		puts("         员工工资管理系统        ");
+		puts("\n");
+		printf("\n");
+		puts("         显示所有员工信息\n");
+		puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\n");
 		while (p != NULL)
 		{
 			printf("%-8d", p->number);
@@ -48,7 +54,7 @@ void out_employee(struct employee *S)
 			count0++;
 			p = p->next;
 		}
-		printf("共有%d个员工\n", count0);
+		printf("\n共有%d个员工\n\n", count0);
 		/*for (int i = 0; i < count; i++)
 		{
 		printf("%d\t", p->number);

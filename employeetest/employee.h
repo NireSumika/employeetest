@@ -23,14 +23,15 @@ struct employee
 	struct employee *last;
 };
 
-//void numbers(int count0);
+
+void welcomePage();
 struct employee * readfile();
 void writefile(struct employee *S);
 void search_employee(struct employee *S);
 void out_employee(struct employee *S);
 struct employee * add_employee(struct employee *S);
 struct employee * delete_employee(struct employee *S);
-void welcome_page();
+
 
 int main();
 
