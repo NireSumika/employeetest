@@ -1,10 +1,63 @@
-#include <stdio.h>
-#include <Windows.h>
-#include <stdlib.h>
-#include <string.h>
-#include <conio.h>
+#include "employee.h"
 
 int main();
+
+void search_department(struct employee *S)
+{
+	system("cls");
+	char departMent[15];
+	puts("\n");
+	puts("         员工工资管理系统        ");
+	puts("\n");
+	printf("\n");
+	puts("           查找员工信息             ");
+	puts("\n");
+	printf("           请输入要查询的部门：");
+	scanf("%s", departMent);
+}
+
+void search_role(struct employee *S)
+{
+	system("cls");
+	char roleS[15];
+	puts("\n");
+	puts("         员工工资管理系统        ");
+	puts("\n");
+	printf("\n");
+	puts("           查找员工信息             ");
+	puts("\n");
+	printf("           请输入查询的岗位：");
+	scanf("%s", roleS);
+}
+
+void search_name(struct employee *S)
+{
+	system("cls");
+	char nameS[15];
+	puts("\n");
+	puts("         员工工资管理系统        ");
+	puts("\n");
+	printf("\n");
+	puts("           查找员工信息             ");
+	puts("\n");
+	printf("           请输入员工姓名：");
+	scanf("%s", nameS);
+}
+
+void search_number(struct employee *S)
+{
+	system("cls");
+	int numberS;
+	puts("\n");
+	puts("         员工工资管理系统        ");
+	puts("\n");
+	printf("\n");
+	puts("           查找员工信息             ");
+	puts("\n");
+	printf("           请输入员工工号：");
+	scanf("%d", &numberS);
+
+}
 
 void search_employee(struct employee *S)
 {
@@ -12,7 +65,6 @@ void search_employee(struct employee *S)
 	int choose;
 	do 
 	{
-		puts("\n");
 		puts("\n");
 		puts("         员工工资管理系统        ");
 		puts("\n");
@@ -31,19 +83,19 @@ void search_employee(struct employee *S)
 		switch (choose)
 		{
 			case 1:
-
+				out_employee(S);
 				break;
 			case 2:
-
+				search_department(S);
 				break;
 			case 3:
-
+				search_role(S);
 				break;
 			case 4:
-
+				search_name(S);
 				break;
 			case 5:
-
+				search_number(S);
 				break;
 			case 0:
 				system("cls");

@@ -147,8 +147,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="delete_employee.cpp" />
+    <ClCompile Include="out_employee.cpp" />
     <ClCompile Include="search_employee.cpp" />
-    <ClCompile Include="源.cpp" />
+    <ClCompile Include="welcome_page.cpp" />
+    <ClCompile Include="writefile.cpp" />
+    <ClCompile Include="main_read_add.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="employee.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
