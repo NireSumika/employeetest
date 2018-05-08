@@ -33,6 +33,9 @@
     <ClCompile Include="welcome_page.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="out_one_employee.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="employee.h">

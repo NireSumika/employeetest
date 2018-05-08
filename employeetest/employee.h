@@ -31,6 +31,7 @@ void search_employee(struct employee *S);
 void out_employee(struct employee *S);
 struct employee * add_employee(struct employee *S);
 struct employee * delete_employee(struct employee *S);
+void out_one_employee(struct employee *S);
 
 
 int main();

@@ -20,37 +20,7 @@ void out_employee(struct employee *S)
 		puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\n");
 		while (p != NULL)
 		{
-			printf("%-8d", p->number);
-			printf("%-8s", p->name);
-			printf("%-8d", p->age);
-			printf("%-8s", p->sex);
-			printf("%-16s", p->department);
-			int temp = (int)p->role;
-			if (p->role == manager)
-			{
-				printf("经理      \t");
-			}
-			if (p->role == technician)
-			{
-				printf("技术员    \t");
-			}
-			if (p->role == saler)
-			{
-				printf("销售员    \t");
-			}
-			if (p->role == salemanager)
-			{
-				printf("销售经理  \t");
-			}
-			if (p->role == technician)
-			{
-				printf("%d", p->worktime);
-			}
-			if (p->role == saler)
-			{
-				printf("\t\t%.2lf", p->salesvolume);
-			}
-			printf("\n");
+			out_one_employee(p);
 			count0++;
 			p = p->next;
 		}
