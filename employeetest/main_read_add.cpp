@@ -43,12 +43,12 @@ struct employee * readfile()
 		p = (struct employee*)malloc(sizeof(struct employee));
 		q = q->next;
 	}
-	printf("共有%d个员工信息被读入", count);
 	if (p = NULL)
 	{
-		puts("当前员工表中没有员工！！");
+		puts("\n当前员工表中没有员工！！");
 		return NULL;
 	}
+	printf("\n共有%d个员工信息被读入", count);
 	return S;
 }
 
@@ -61,11 +61,13 @@ struct employee * add_employee(struct employee *S)
 		S->next = NULL;
 		S->last = NULL;
 		S->number = ++number;
-		puts("\n");
-		puts("         员工工资管理系统");
-		puts("\n");
+		logo();
+		puts("————————————————————————————————");
+		puts("|                                                              |");
+		puts("|                         添加员工信息                         |");
+		puts("|                                                              |");
+		puts("————————————————————————————————");
 		printf("\n");
-		puts("             添加员工\n");
 		printf("员工编号为：%d", S->number);
 		printf("\n");
 		printf("请输入员工的姓名：");
@@ -207,11 +209,11 @@ struct employee * add_employee(struct employee *S)
 
 int main()
 {
-	//welcomePage();
-
 	struct employee *data= NULL;
 
 	data = readfile();//调用读入函数
+
+	welcomePage();
 
 	main_menu(data);
 

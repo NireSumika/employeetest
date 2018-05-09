@@ -4,8 +4,6 @@
 #include <string.h>
 #include <conio.h>
 
-
-
 enum role { manager = 1, technician, saler, salemanager };//枚举类型: 经理 技术员 销售员 销售经理
 
 struct employee
@@ -23,18 +21,29 @@ struct employee
 	struct employee *last;
 };
 
-
+//////////////////////////////////////////////////
 void welcomePage();
-void logo();
-void main_menu(struct employee *S);
-struct employee * readfile();
-void writefile(struct employee *S);
-void search_employee(struct employee *S);
-void out_employee(struct employee *S);
-struct employee * add_employee(struct employee *S);
-struct employee * delete_employee(struct employee *S);
-void out_one_employee(struct employee *S);
 
+void logo();
+
+void main_menu(struct employee *S);
+
+struct employee * readfile();
+
+void writefile(struct employee *S);
+
+void search_employee(struct employee *S);
+
+struct employee * change_employee(struct employee *S);
+
+void out_employee(struct employee *S);
+
+struct employee * add_employee(struct employee *S);
+
+struct employee * delete_employee(struct employee *S);
+
+void out_one_employee(struct employee *S);
+//////////////////////////////////////////////////
 
 int main();
 

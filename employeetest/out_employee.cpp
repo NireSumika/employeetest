@@ -11,12 +11,13 @@ void out_employee(struct employee *S)
 	}
 	else
 	{
-		system("cls");
-		puts("\n");
-		puts("         员工工资管理系统        ");
-		puts("\n");
+		logo();
+		puts("————————————————————————————————");
+		puts("|                                                              |");
+		puts("|                       显示所有员工信息                       |");
+		puts("|                                                              |");
+		puts("————————————————————————————————");
 		printf("\n");
-		puts("         显示所有员工信息\n");
 		puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\n");
 		while (p != NULL)
 		{

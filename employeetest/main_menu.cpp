@@ -4,22 +4,21 @@ void main_menu(struct employee *S)
 {
 	struct employee * data = S;
 	int choose;
-	system("cls");
 	do {
 		logo();
-		puts("           功能选择菜单             ");
-		puts("\n");
-		puts("         1、添加员工信息          ");
-		puts("         2、查找员工信息          ");
-		puts("         3、修改员工信息          ");
-		puts("         4、删除员工信息          ");
-		puts("         5、排序功能          ");
-		puts("         6、统计功能          ");
-		puts("         7、显示所有员工信息      ");
-		puts("         8、保存文件      ");
-		puts("         0、退出程序              ");
+		puts("————————————————————————————————");
+		puts("|                                                              |");
+		puts("|                         功能选择菜单                         |");
+		puts("|                                                              |");
+		puts("|    1、添加员工信息    2、查找员工信息    3、修改员工信息     |");
+		puts("|                                                              |");
+		puts("|    4、删除员工信息    5、排序功能        6、统计功能         |");
+		puts("|                                                              |");
+		puts("|    7、显示所有员工    8、保存文件        0、退出程序         |");
+		puts("|                                                              |");
+		puts("————————————————————————————————");
 		printf("\n");
-		printf("         请输入你的选择：");
+		printf("请输入你的选择：");
 		scanf("%d", &choose);
 		switch (choose)
 		{
@@ -69,8 +68,13 @@ void main_menu(struct employee *S)
 		case 0:
 			writefile(data);
 			system("pause");
-			system("cls");
-			puts("\n          谢谢使用  \n");
+			logo();
+			puts("————————————————————————————————");
+			puts("|                                                              |");
+			puts("|                   ∩_∩   谢谢使用   ∩_∩                   |");
+			puts("|                                                              |");
+			puts("————————————————————————————————");
+			printf("\n");
 			system("pause");
 			exit(0);
 		default:

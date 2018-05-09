@@ -17,7 +17,7 @@ void writefile(struct employee *S)
 		countA++;
 		p = p->next;
 	}
-	puts("\n文件保存成功!");
-	printf("共写入 %d 个员工信息!\n", countA);
+	puts("\n文件保存成功!\n");
+	printf("共写入 %d 个员工信息!\n\n", countA);
 	fclose(fp);
 }

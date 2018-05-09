@@ -7,13 +7,14 @@ struct employee * delete_employee(struct employee *S)
 	struct employee *ifhead;
 	struct employee *ifend;
 	int numberD = 0;
-	system("cls");
-	puts("\n");
-	puts("         员工工资管理系统        ");
-	puts("\n");
+	logo();
+	puts("————————————————————————————————");
+	puts("|                                                              |");
+	puts("|                         删除员工信息                         |");
+	puts("|                                                              |");
+	puts("————————————————————————————————");
 	printf("\n");
-	puts("           删除员工信息\n");
-	printf("\n请输入要删除的员工工号(输入 0 返回）：");
+	printf("请输入要删除的员工工号(输入 0 返回）：");
 	scanf("%d", &numberD);
 	if (numberD == 0)
 	{
@@ -21,7 +22,7 @@ struct employee * delete_employee(struct employee *S)
 	}
 	if (numberD < 0)
 	{
-		puts("输入错误，请重新输入");
+		puts("\n输入错误，请重新输入\n");
 		system("pause");
 		system("cls");
 		delete_employee(S);
@@ -42,18 +43,19 @@ struct employee * delete_employee(struct employee *S)
 	}
 	if (p != NULL)
 	{
-		system("cls");
-		puts("\n");
-		puts("         员工工资管理系统        ");
-		puts("\n");
+		logo();
+		puts("————————————————————————————————");
+		puts("|                                                              |");
+		puts("|                         删除员工信息                         |");
+		puts("|                                                              |");
+		puts("————————————————————————————————");
 		printf("\n");
-		puts("           删除员工信息\n");
 		printf("以下是工号为 %d 的员工信息:\n", numberD);
 		puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\n");
 		out_one_employee(op);
 		printf("\n");
 	}
-	printf("\n输入 1 确定删除, 输入 0 取消:");
+	printf("输入 1 确定删除, 输入 0 取消:");
 	int choose = 0;
 	scanf("%d", &choose);
 	do
@@ -61,7 +63,8 @@ struct employee * delete_employee(struct employee *S)
 		switch (choose)
 		{
 		case 0:
-			puts("已取消删除!");
+			puts("\n已取消删除!\n");
+			system("pause");
 			return S;
 		case 1:
 			continue;
