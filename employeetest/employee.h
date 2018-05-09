@@ -25,6 +25,8 @@ struct employee
 
 
 void welcomePage();
+void logo();
+void main_menu(struct employee *S);
 struct employee * readfile();
 void writefile(struct employee *S);
 void search_employee(struct employee *S);

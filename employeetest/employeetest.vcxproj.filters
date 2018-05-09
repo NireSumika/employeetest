@@ -36,6 +36,12 @@
     <ClCompile Include="out_one_employee.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="main_menu.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="loge.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="employee.h">

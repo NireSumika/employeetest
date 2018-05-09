@@ -13,9 +13,13 @@ struct employee * delete_employee(struct employee *S)
 	puts("\n");
 	printf("\n");
 	puts("           删除员工信息\n");
-	printf("\n请输入要删除的员工工号：");
+	printf("\n请输入要删除的员工工号(输入 0 返回）：");
 	scanf("%d", &numberD);
-	if (numberD <= 0)
+	if (numberD == 0)
+	{
+		main_menu(S);
+	}
+	if (numberD < 0)
 	{
 		puts("输入错误，请重新输入");
 		system("pause");

@@ -1,0 +1,84 @@
+#include "employee.h"
+
+void main_menu(struct employee *S)
+{
+	struct employee * data = S;
+	int choose;
+	system("cls");
+	do {
+		logo();
+		puts("           功能选择菜单             ");
+		puts("\n");
+		puts("         1、添加员工信息          ");
+		puts("         2、查找员工信息          ");
+		puts("         3、修改员工信息          ");
+		puts("         4、删除员工信息          ");
+		puts("         5、排序功能          ");
+		puts("         6、统计功能          ");
+		puts("         7、显示所有员工信息      ");
+		puts("         8、保存文件      ");
+		puts("         0、退出程序              ");
+		printf("\n");
+		printf("         请输入你的选择：");
+		scanf("%d", &choose);
+		switch (choose)
+		{
+		case 1:
+			system("cls");
+			data = add_employee(data);
+			break;
+		case 2:
+			if (data == NULL)
+			{
+				printf("当前员工表中没有信息！\n");
+				break;
+			}
+			search_employee(data);
+			break;
+		case 3:
+			if (data == NULL)
+			{
+				printf("当前员工表中没有信息！\n");
+				break;
+			}
+			break;
+		case 4:
+			if (data == NULL)
+			{
+				printf("当前员工表中没有信息！\n");
+				break;
+			}
+			data = delete_employee(data);
+			break;
+		case 5:
+
+			break;
+		case 6:
+
+			break;
+		case 7:
+			if (data == NULL)
+			{
+				printf("当前员工表中没有信息！\n");
+			}
+			out_employee(data);
+			break;
+		case 8:
+			writefile(data);
+			break;
+		case 0:
+			writefile(data);
+			system("pause");
+			system("cls");
+			puts("\n          谢谢使用  \n");
+			system("pause");
+			exit(0);
+		default:
+			puts("\n输入错误，请重新输入\n");
+			fflush(stdin);//清除choose的值,避免输入非数字后死循环
+			break;
+		}
+		system("pause");
+		system("cls");
+	} while (choose != -1);
+}

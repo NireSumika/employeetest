@@ -148,6 +148,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="delete_employee.cpp" />
+    <ClCompile Include="loge.cpp" />
+    <ClCompile Include="main_menu.cpp" />
     <ClCompile Include="out_employee.cpp" />
     <ClCompile Include="out_one_employee.cpp" />
     <ClCompile Include="search_employee.cpp" />

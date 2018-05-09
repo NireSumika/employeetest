@@ -61,6 +61,11 @@ struct employee * add_employee(struct employee *S)
 		S->next = NULL;
 		S->last = NULL;
 		S->number = ++number;
+		puts("\n");
+		puts("         员工工资管理系统");
+		puts("\n");
+		printf("\n");
+		puts("             添加员工\n");
 		printf("员工编号为：%d", S->number);
 		printf("\n");
 		printf("请输入员工的姓名：");
@@ -203,86 +208,12 @@ struct employee * add_employee(struct employee *S)
 int main()
 {
 	//welcomePage();
-	int choose;
+
 	struct employee *data= NULL;
+
 	data = readfile();//调用读入函数
-	do {
-		puts("\n");
-		puts("         员工工资管理系统        ");
-		puts("\n");
-		printf("\n");
-		puts("           功能选择菜单             ");
-		puts("\n");
-		puts("         1、添加员工信息          ");
-		puts("         2、查找员工信息          ");
-		puts("         3、修改员工信息          ");
-		puts("         4、删除员工信息          ");
-		puts("         5、排序功能          ");
-		puts("         6、统计功能          ");
-		puts("         7、显示所有员工信息      ");
-		puts("         8、保存文件      ");
-		puts("         0、退出程序              ");
-		printf("\n");
-		printf("         请输入你的选择：");
-		scanf("%d", &choose);
-		switch (choose)
-		{
-		case 1:
-			data = add_employee(data);
-			break;
-		case 2:
-			if (data == NULL)
-			{
-				printf("当前员工表中没有信息！\n");
-				break;
-			}
-			search_employee(data);
-			break;
-		case 3:
-			if (data == NULL)
-			{
-				printf("当前员工表中没有信息！\n");
-				break;
-			}
-			break;
-		case 4:
-			if (data == NULL)
-			{
-				printf("当前员工表中没有信息！\n");
-				break;
-			}
-			data = delete_employee(data);
-			break;
-		case 5:
 
-			break;
-		case 6:
+	main_menu(data);
 
-			break;
-		case 7:
-			if (data == NULL)
-			{
-				printf("当前员工表中没有信息！\n");
-			}
-			out_employee(data);
-			break;
-		case 8:
-			writefile(data);
-			break;
-		case 0:
-			writefile(data);
-			system("pause");
-			system("cls");
-			puts("\n          谢谢使用  \n");
-			system("pause");
-			exit(0);
-		default:
-			puts("\n输入错误，请重新输入\n");
-			fflush(stdin);//清除choose的值,避免输入非数字后死循环
-			break;
-		}
-		system("pause");
-		system("cls");
-	} while (choose != -1);
 	return 0;
 }

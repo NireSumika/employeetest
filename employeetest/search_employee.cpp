@@ -21,15 +21,13 @@ void search_department(struct employee *S)
 	}
 	while (S != NULL)
 	{
-		char depart[10] = S->department;
-		if (depart == departMent)
+		if (strcmp(S->department , departMent) == 0)
 		{
 			out_one_employee(S);
 			count0++;
 		}
 		S = S->next;
 	}
-	printf("\n");
 	printf("\n共有 %d 个结果\n\n", count0);
 	return;
 }
@@ -48,10 +46,14 @@ void search_role(struct employee *S)
 		puts("\n");
 		printf("	当前岗位信息: 1、经理 2、技术员 3、销售员 4、销售经理");
 		printf("\n");
-		printf("           请选择查询的岗位：");
+		printf("           请选择查询的岗位(输入 0 返回）：");
 
 		int count0 = 0;
 		scanf("%d", &choose);
+		if (choose == 0)
+		{
+			search_employee(S);
+		}
 		switch (choose)
 		{
 		case 1:
@@ -65,7 +67,6 @@ void search_role(struct employee *S)
 				}
 				S = S->next;
 			}
-			printf("\n");
 			printf("\n共有 %d 个结果\n\n", count0);
 			
 			return;
@@ -144,14 +145,13 @@ void search_name(struct employee *S)
 	puts("\n\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\n");
 	while (S != NULL)
 	{
-		if (S->name == nameS)
+		if (strcmp(S->name , nameS) == 0)
 		{
 			out_one_employee(S);
 			count0++;
 		}
 		S = S->next;
 	}
-	printf("\n");
 	printf("\n共有 %d 个结果\n", count0);
 	return;
 }
@@ -166,8 +166,12 @@ void search_number(struct employee *S)
 	printf("\n");
 	puts("           查找员工信息             ");
 	puts("\n");
-	printf("           请输入员工工号：");
+	printf("           请输入员工工号(输入 0 返回）：");
 	scanf("%d", &numberS);
+	if (numberS == 0)
+	{
+		search_employee(S);
+	}
 	int count0 = 0;
 	puts("\n\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\n");
 	while(S != NULL)
@@ -179,7 +183,6 @@ void search_number(struct employee *S)
 		}
 		S = S->next;
 	}
-	printf("\n");
 	printf("\n已找到该员工！\n");
 	return;
 }
@@ -224,7 +227,7 @@ void search_employee(struct employee *S)
 				break;
 			case 0:
 				system("cls");
-				main();
+				main_menu(S);
 			default:
 				printf("\n输入错误，请重新输入\n");
 				fflush(stdin);//清除choose的值,避免输入非数字后死循环
