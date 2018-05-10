@@ -1,5 +1,6 @@
 #include "employee.h"
 
+//输出单个员工信息
 void out_one_employee(struct employee *S)
 {
 	printf("%-8d", S->number);
@@ -26,5 +27,6 @@ void out_one_employee(struct employee *S)
 	{
 		printf("销售经理  \t");
 	}
+	printf("\t\t\t\t%.2lf", S->salary);
 	printf("\n");
 }

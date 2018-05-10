@@ -1,6 +1,7 @@
 #include "employee.h"
 
-struct employee * change_employee(struct employee *S)
+//修改功能函数
+struct employee * change_employee(struct employee *S)//修改员工信息
 {
 	logo();
 	puts("————————————————————————————————");
@@ -17,17 +18,16 @@ struct employee * change_employee(struct employee *S)
 		main_menu(S);
 	}
 	int count0 = 0;
-	struct employee *p = S;
-	while (p != NULL)
+	while (S != NULL)
 	{
-		if (p->number == numberS)
+		if (S->number == numberS)
 		{
-			puts("\n\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\n");
-			out_one_employee(p);
+			puts("\n\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
+			out_one_employee(S);
 			count0++;
 			break;
 		}
-		p = p->next;
+		S = S->next;
 	}
 	if (count0 == 0)
 	{
@@ -42,44 +42,215 @@ struct employee * change_employee(struct employee *S)
 	int choose = 0;
 	do
 	{
-		puts("请选择要修改的项目(输入 0 返回)：");
 		printf("1、姓名  2、年龄  3、性别  4、 部门  5、岗位  ");
-		if (p->role == technician)
+		if (S->role == technician)
 		{
-			puts("6、工作时间");
+			printf("6、工作时间  ");
 		}
-		else if (p->role == saler)
+		else if (S->role == saler)
 		{
-			puts("6、销售额");
+			printf("6、销售额  ");
 		}
-		puts("");
+		printf("7、当月工资");
+		puts("\n");
+		int confir = 0;
+		printf("请选择要修改的项目(输入 0 返回)：");
 		scanf("%d", &choose);
 		switch (choose)
 		{
 		case 1:
-
+			printf("请输入新的姓名：");
+			char oldName[15];
+			strcpy(oldName, S->name);
+			char newName[15];
+			scanf("%s", newName);
+			printf("输入 1 确认修改，输入 0 取消：");
+			
+			scanf("%d", &confir);
+			if (confir == 1)
+			{
+				strcpy(S->name, newName);
+				printf("!! 工号为 %d 的员工的姓名已由 %s 修改为 %s !!\n\n", S->number, oldName, S->name);
+				change_employee(S);
+			}
+			else
+			{
+				puts("取消更改！");
+				system("pause");
+				change_employee(S);
+			}
 			break;
 		case 2:
-
+			printf("请输入新的年龄：");
+			int oldAge;
+			oldAge = S->age;
+			int newAge;
+			scanf("%d", &newAge);
+			printf("输入 1 确认修改，输入 0 取消：");
+			scanf("%d", &confir);
+			if (confir == 1)
+			{
+				S->age = newAge;
+				printf("!! 工号为 %d 的员工的年龄已由 %d 修改为 %d !!\n\n", S->number, oldAge, S->age);
+				change_employee(S);
+			}
+			else
+			{
+				puts("取消更改！");
+				system("pause");
+				change_employee(S);
+			}
 			break;
 		case 3:
-
+			printf("请输入新的性别：");
+			char oldSex[5];
+			strcpy(oldSex, S->sex);
+			char newSex[5];
+			scanf("%s", newSex);
+			printf("输入 1 确认修改，输入 0 取消：");
+			scanf("%d", &confir);
+			if (confir == 1)
+			{
+				strcpy(S->sex, newSex);
+				printf("!! 工号为 %d 的员工的性别已由 %s 修改为 %s !!\n\n", S->number, oldSex, S->sex);
+				change_employee(S);
+			}
+			else
+			{
+				puts("取消更改！");
+				system("pause");
+				change_employee(S);
+			}
 			break;
 		case 4:
-
+			printf("请输入新的部门：");
+			char oldDepart[10];
+			strcpy(oldDepart, S->department);
+			char newDepart[10];
+			scanf("%s", newDepart);
+			printf("输入 1 确认修改，输入 0 取消：");
+			scanf("%d", &confir);
+			if (confir == 1)
+			{
+				strcpy(S->department, newDepart);
+				printf("!! 工号为 %d 的员工的部门已由 %s 修改为 %s !!\n\n", S->number, oldDepart, S->department);
+				change_employee(S);
+			}
+			else
+			{
+				puts("取消更改！");
+				system("pause");
+				change_employee(S);
+			}
 			break;
 		case 5:
-
+			printf("请选择新的岗位：1、经理 2、技术员 3、销售员 4、销售经理 :");
+			int oldRole;
+			oldRole = (int)S->role;
+			char old_role[10];
+			if (oldRole == 1)
+			{
+				strcpy(old_role, "经理");
+			}
+			else if (oldRole == 2)
+			{
+				strcpy(old_role, "技术员");
+			}
+			else if (oldRole == 3)
+			{
+				strcpy(old_role, "销售员");
+			}
+			else if (oldRole == 4)
+			{
+				strcpy(old_role, "销售经理");
+			}
+			int newRole;
+			scanf("%d", &newRole);
+			do
+			{
+				if (oldRole == newRole)
+				{
+					printf("修改前后信息一致！！请重新输入：");
+					scanf("%d", &newRole);
+				}
+			} while (oldRole != newRole);
+			//判断经理数
+			printf("输入 1 确认修改，输入 0 取消：");
+			scanf("%d", &confir);
+			if (confir == 1)
+			{
+				S->role = (enum role)newRole;
+				printf("!! 工号为 %d 的员工的岗位已由 %s 修改为 ", S->number, old_role);
+				if (S->role == manager)
+				{
+					puts("经理  !!\n");
+				}
+				else if (S->role == technician)
+				{
+					puts("技术员  !!\n");
+				}
+				else if (S->role == saler)
+				{
+					puts("销售员  !!\n");
+				}
+				else if (S->role == salemanager)
+				{
+					puts("销售经理  !!\n");
+				}
+				change_employee(S);
+			}
+			else
+			{
+				puts("取消更改！");
+				system("pause");
+				change_employee(S);
+			}
 			break;
 		case 6:
-			if (p->role == technician)
+			if (S->role == technician)
 			{
-
+				printf("请输入新的工作时间：");
+				int oldWorktime;
+				oldWorktime = S->worktime;
+				int newWorktime;
+				scanf("%d", &newWorktime);
+				printf("输入 1 确认修改，输入 0 取消：");
+				scanf("%d", &confir);
+				if (confir == 1)
+				{
+					S->worktime = newWorktime;
+					printf("!! 工号为 %d 的员工的工作时间已由 %d 修改为 %d !!\n\n", S->number, oldWorktime, S->worktime);
+					change_employee(S);
+				}
+				else
+				{
+					puts("取消更改！");
+					system("pause");
+					change_employee(S);
+				}
 				break;
 			}
-			else if (p->role == saler)
+			else if (S->role == saler)
 			{
-				
+				printf("请输入新的销售额：");
+				double oldSalesvalue;
+				oldSalesvalue = S->salesvolume;
+				double newSalesvalue;
+				scanf("%d", &newSalesvalue);
+				printf("输入 1 确认修改，输入 0 取消：");
+				scanf("%d", &confir);
+				if (confir == 1)
+				{
+					S->salesvolume = newSalesvalue;
+					printf("!! 工号为 %d 的员工的销售额已由 %d 修改为 %d !!\n\n", S->number, oldSalesvalue, S->salesvolume);
+					change_employee(S);
+				}
+				else
+				{
+					puts("取消更改！");
+					system("pause");
+					change_employee(S);
+				}
 				break;
 			}
 			else

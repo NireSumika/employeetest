@@ -1,5 +1,6 @@
 #include "employee.h"
 
+//主菜单
 void main_menu(struct employee *S)
 {
 	struct employee * data = S;
@@ -40,6 +41,7 @@ void main_menu(struct employee *S)
 				printf("当前员工表中没有信息！\n");
 				break;
 			}
+			data = change_employee(data);
 			break;
 		case 4:
 			if (data == NULL)
@@ -66,8 +68,19 @@ void main_menu(struct employee *S)
 			writefile(data);
 			break;
 		case 0:
-			writefile(data);
-			system("pause");
+			printf("是否保存文件？ 输入 1 保存，输入 0 不保存：");
+			int saveFile;
+			scanf("%d", &saveFile);
+			if (saveFile == 1)
+			{
+				writefile(data);
+				system("pause");
+			}
+			else
+			{
+				puts("不保存文件！\n");
+				system("pause");
+			}
 			logo();
 			puts("————————————————————————————————");
 			puts("|                                                              |");

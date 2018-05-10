@@ -1,5 +1,6 @@
 #include "employee.h"
 
+//Ð´ÎÄ¼þº¯Êý
 void writefile(struct employee *S)
 {
 	FILE *fp;

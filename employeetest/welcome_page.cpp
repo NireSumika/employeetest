@@ -1,5 +1,6 @@
 #include "employee.h"
 
+//ª∂”≠ΩÁ√Ê
 void welcomePage()
 {
 	puts("\n\n");

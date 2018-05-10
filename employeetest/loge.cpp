@@ -1,5 +1,6 @@
 #include "employee.h"
 
+//³ÌÐòÃû³Æ
 void logo()
 {
 	system("cls");

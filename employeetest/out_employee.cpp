@@ -1,5 +1,6 @@
 #include "employee.h"
 
+//输出功能函数
 void out_employee(struct employee *S)
 {
 	struct employee *p = S;
@@ -18,7 +19,7 @@ void out_employee(struct employee *S)
 		puts("|                                                              |");
 		puts("————————————————————————————————");
 		printf("\n");
-		puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\n");
+		puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
 		while (p != NULL)
 		{
 			out_one_employee(p);

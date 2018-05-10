@@ -14,7 +14,7 @@ struct employee
 	char sex[5];
 	char department[10];//部门
 	enum role role;//岗位
-				   //double salary;//工资
+	double salary;//工资
 	int worktime;//工作时间
 	double salesvolume;//销售额
 	struct employee *next;

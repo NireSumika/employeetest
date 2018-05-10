@@ -1,5 +1,6 @@
 #include "employee.h"
 
+//删除功能函数
 struct employee * delete_employee(struct employee *S)
 {
 	struct employee *p = S;
@@ -51,7 +52,7 @@ struct employee * delete_employee(struct employee *S)
 		puts("————————————————————————————————");
 		printf("\n");
 		printf("以下是工号为 %d 的员工信息:\n", numberD);
-		puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\n");
+		puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
 		out_one_employee(op);
 		printf("\n");
 	}
@@ -92,6 +93,7 @@ struct employee * delete_employee(struct employee *S)
 		op->last->next = op->next;
 		free(op);
 	}
-	printf("\n工号为 %d 的员工信息已删除！\n", numberD);
+	printf("\n工号为 %d 的员工信息已删除！\n\n", numberD);
+	system("pause");
 	return S;
 }
