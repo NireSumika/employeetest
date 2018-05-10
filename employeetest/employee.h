@@ -43,6 +43,10 @@ struct employee * add_employee(struct employee *S);
 struct employee * delete_employee(struct employee *S);
 
 void out_one_employee(struct employee *S);
+
+int count_salemanager(struct employee *S, char department[10]);
+
+double calculate_departmentSalesValue(struct employee *S, char department[10]);
 //////////////////////////////////////////////////
 
 int main();

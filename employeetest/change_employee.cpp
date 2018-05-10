@@ -1,7 +1,7 @@
 #include "employee.h"
 
 //修改功能函数
-struct employee * change_employee(struct employee *S)//修改员工信息
+struct employee * change_employee(struct employee *S)//修改除工号外的员工信息
 {
 	logo();
 	puts("————————————————————————————————");
@@ -11,6 +11,7 @@ struct employee * change_employee(struct employee *S)//修改员工信息
 	puts("————————————————————————————————");
 	printf("\n");
 	int numberS = 0;
+	struct employee * p = S;
 	printf("请输入要修改的员工的工号(输入 0 返回）：");
 	scanf("%d", &numberS);
 	if (numberS == 0)
@@ -174,12 +175,68 @@ struct employee * change_employee(struct employee *S)//修改员工信息
 					scanf("%d", &newRole);
 				}
 			} while (oldRole != newRole);
-			//判断经理数
+			int workTime;
+			double salesValue;
+			if (newRole == 4)
+			{
+				if (count_salemanager(p, S->department) == 1)
+				{
+					puts("修改信息失败！！");
+					return;
+				}
+				puts("已选择销售经理！");
+			}
+			else if (newRole == 2)
+			{
+				puts("已选择技术员！");
+				printf("请输入该员工当月工作时间(小时，整数)：");
+				scanf("%d", &workTime);
+			}
+			else if (newRole == 3)
+			{
+				puts("已选择销售员！");
+				printf("请输入该员工当月销售额：");
+				scanf("%lf", &salesValue);
+			}
 			printf("输入 1 确认修改，输入 0 取消：");
 			scanf("%d", &confir);
 			if (confir == 1)
 			{
+				if (oldRole == 1)
+				{
+					S->salary = NULL;
+				}
+				else if (oldRole == 2)
+				{
+					S->worktime = NULL;
+					S->salary = NULL;
+				}
+				else if (oldRole == 3)
+				{
+					S->salesvolume = NULL;
+					S->salary = NULL;
+				}
+				else if (oldRole == 4)
+				{
+					strcpy(old_role, "销售经理");
+				}
 				S->role = (enum role)newRole;
+				if (S->role == manager)
+				{
+					S->salary = 8000;
+				}
+				else if (S->role == technician)
+				{
+					S->salary = (workTime * 100);
+				}
+				else if (S->role == saler)
+				{
+					S->salary = (salesValue * 0.04);
+				}
+				else if (S->role == salemanager)
+				{
+					S->salary = ((calculate_departmentSalesValue(p, S->department) * 0.005) + 5000.0);
+				}
 				printf("!! 工号为 %d 的员工的岗位已由 %s 修改为 ", S->number, old_role);
 				if (S->role == manager)
 				{
@@ -197,6 +254,8 @@ struct employee * change_employee(struct employee *S)//修改员工信息
 				{
 					puts("销售经理  !!\n");
 				}
+				puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
+				out_one_employee(S);
 				change_employee(S);
 			}
 			else
@@ -243,6 +302,28 @@ struct employee * change_employee(struct employee *S)//修改员工信息
 				{
 					S->salesvolume = newSalesvalue;
 					printf("!! 工号为 %d 的员工的销售额已由 %d 修改为 %d !!\n\n", S->number, oldSalesvalue, S->salesvolume);
+					if (count_salemanager(p, S->department) == 1)
+					{
+						struct employee *q = p;
+						double countDMSalesValue = 0;
+						countDMSalesValue = ((calculate_departmentSalesValue(q, S->department) * 0.005) + 5000.0);
+						struct employee * search = p;
+						while (search != NULL)
+						{
+							if (strcmp(search->department, S->department) == 0)
+							{
+								if (search->role == salemanager)
+								{
+									search->salary = countDMSalesValue;
+									break;
+								}
+							}
+							search = search->next;
+						}
+						puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
+						out_one_employee(search);
+
+					}
 					change_employee(S);
 				}
 				else

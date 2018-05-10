@@ -56,6 +56,7 @@ struct employee * readfile()//读入函数，打开文件并将文件信息存入链表
 struct employee * add_employee(struct employee *S)//添加新员工信息
 {
 	struct employee *p = S;
+	struct employee *count = S;
 	if (S == NULL)
 	{
 		S = (struct employee*)malloc(sizeof(struct employee));
@@ -105,10 +106,15 @@ struct employee * add_employee(struct employee *S)//添加新员工信息
 		}
 		else if(S->role == salemanager)
 		{
-			double Msalery;
-			printf("请输入所在部门 %s 当月的销售总额：", S->department);
-			scanf("%lf", &Msalery);
-			S->salary = Msalery;
+			if (count_salemanager(count, S->department) == 1)
+			{
+				puts("添加员工信息失败!!");
+				return;
+			}
+			else
+			{
+				S->salary = ((calculate_departmentSalesValue(count, S->department) * 0.005) + 5000.0);
+			}
 		}
 		S->next = NULL;
 		S->last = NULL;
@@ -166,10 +172,15 @@ struct employee * add_employee(struct employee *S)//添加新员工信息
 	}
 	else if (q->role == salemanager)
 	{
-		double Msalery;
-		printf("请输入所在部门 %s 当月的销售总额：", q->department);
-		scanf("%lf", &Msalery);
-		q->salary = Msalery;
+		if(count_salemanager(count, q->department) == 1)
+		{
+			puts("添加员工信息失败!!");
+			return;
+		}
+		else
+		{
+			q->salary = ((calculate_departmentSalesValue(count, q->department) * 0.005) + 5000.0);
+		}
 	}
 	p->next = q;
 	q->last = p;

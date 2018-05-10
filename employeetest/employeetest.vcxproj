@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="change_employee.cpp" />
+    <ClCompile Include="count_calculate_salemanager.cpp" />
     <ClCompile Include="delete_employee.cpp" />
     <ClCompile Include="loge.cpp" />
     <ClCompile Include="main_menu.cpp" />
