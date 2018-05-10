@@ -34,7 +34,7 @@ void writefile(struct employee *S);
 
 void search_employee(struct employee *S);
 
-struct employee * change_employee(struct employee *S);
+struct employee * change_employee(struct employee *p);
 
 void out_employee(struct employee *S);
 

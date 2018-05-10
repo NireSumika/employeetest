@@ -12,21 +12,25 @@ void out_one_employee(struct employee *S)
 	if (S->role == manager)
 	{
 		printf("经理      \t");
+		printf("\t\t\t\t%.2lf", S->salary);
 	}
 	else if (S->role == technician)
 	{
 		printf("技术员    \t");
 		printf("%d", S->worktime);
+		printf("\t\t\t\t%.2lf", S->salary);
 	}
 	else if (S->role == saler)
 	{
 		printf("销售员    \t");
-		printf("\t\t%.2lf", S->salesvolume);
+		printf("\t\t%-16.2lf", S->salesvolume);
+		printf("%.2lf", S->salary);
 	}
 	else if (S->role == salemanager)
 	{
 		printf("销售经理  \t");
+		printf("\t\t\t\t%.2lf", S->salary);
 	}
-	printf("\t\t\t\t%.2lf", S->salary);
+	
 	printf("\n");
 }

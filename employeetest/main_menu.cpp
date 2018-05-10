@@ -4,6 +4,7 @@
 void main_menu(struct employee *S)
 {
 	struct employee * data = S;
+	struct employee * p;
 	int choose;
 	do {
 		logo();
@@ -25,14 +26,13 @@ void main_menu(struct employee *S)
 		{
 		case 1:
 			system("cls");
-			data = add_employee(data);
+			p = add_employee(data);
+			if (p != NULL)
+			{
+				data = p;
+			}
 			break;
 		case 2:
-			if (data == NULL)
-			{
-				printf("当前员工表中没有信息！\n");
-				break;
-			}
 			search_employee(data);
 			break;
 		case 3:
@@ -41,7 +41,11 @@ void main_menu(struct employee *S)
 				printf("当前员工表中没有信息！\n");
 				break;
 			}
-			data = change_employee(data);
+			p = change_employee(data);
+			if (p != NULL)
+			{
+				data = p;
+			}
 			break;
 		case 4:
 			if (data == NULL)
@@ -78,7 +82,7 @@ void main_menu(struct employee *S)
 			}
 			else
 			{
-				puts("不保存文件！\n");
+				puts("\n不保存文件！\n");
 				system("pause");
 			}
 			logo();

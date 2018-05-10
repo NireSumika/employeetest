@@ -37,6 +37,7 @@ struct employee * delete_employee(struct employee *S)
 		}
 		p = p->next;
 	}
+
 	if (p == NULL)
 	{
 		printf("\n没有找到工号为 %d 的员工!\n", numberD);
@@ -65,20 +66,71 @@ struct employee * delete_employee(struct employee *S)
 		{
 		case 0:
 			puts("\n已取消删除!\n");
-			system("pause");
 			return S;
 		case 1:
-			continue;
+			if (op->role == saler)
+			{
+				if ((count_salemanager(S, op->department)) == 1)
+				{
+					
+					struct employee * search = S;
+					while (search != NULL)
+					{
+						if (strcmp(search->department, S->department) == 0)
+						{
+							if (search->role == salemanager)
+							{
+								if (op->last == NULL && op->next != NULL)
+								{
+									ifhead = op->next;
+									ifhead->last = NULL;
+									free(op);
+								}
+								else if (op->last == NULL && op->next == NULL)
+								{
+									free(op);
+								}
+								else if (op->next == NULL)
+								{
+									ifend = op->last;
+									ifend->next = NULL;
+									free(op);
+								}
+								else
+								{
+									op->next->last = op->last;
+									op->last->next = op->next;
+									free(op);
+								}
+								printf("\n工号为 %d 的员工信息已删除！\n\n", numberD);
+								double countDMSalesValue = 0;
+								countDMSalesValue = ((calculate_departmentSalesValue(S, p->department) * 0.005) + 5000.0);
+								search->salary = countDMSalesValue;
+								puts("\n该销售经理新的信息如下：");
+								puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
+								out_one_employee(search);
+								return S;
+							}
+						}
+						search = search->next;
+					}
+				}
+			}
+			break;
 		default:
 			puts("\n输入错误，请重新输入\n");
 			fflush(stdin);//清除choose的值,避免输入非数字后死循环
 			break;
 		}
 	} while (choose != 1);
-	if (op->last == NULL)
+	if (op->last == NULL && op->next != NULL)
 	{
 		ifhead = op->next;
 		ifhead->last = NULL;
+		free(op);
+	}
+	else if (op->last == NULL && op->next == NULL)
+	{
 		free(op);
 	}
 	else if (op->next == NULL)
@@ -94,6 +146,5 @@ struct employee * delete_employee(struct employee *S)
 		free(op);
 	}
 	printf("\n工号为 %d 的员工信息已删除！\n\n", numberD);
-	system("pause");
 	return S;
 }

@@ -1,7 +1,7 @@
 #include "employee.h"
 
 //修改功能函数
-struct employee * change_employee(struct employee *S)//修改除工号外的员工信息
+struct employee * change_employee(struct employee *p)//修改除工号外的员工信息
 {
 	logo();
 	puts("————————————————————————————————");
@@ -11,12 +11,12 @@ struct employee * change_employee(struct employee *S)//修改除工号外的员工信息
 	puts("————————————————————————————————");
 	printf("\n");
 	int numberS = 0;
-	struct employee * p = S;
+	struct employee * S = p;
 	printf("请输入要修改的员工的工号(输入 0 返回）：");
 	scanf("%d", &numberS);
 	if (numberS == 0)
 	{
-		main_menu(S);
+		main_menu(p);
 	}
 	int count0 = 0;
 	while (S != NULL)
@@ -65,6 +65,7 @@ struct employee * change_employee(struct employee *S)//修改除工号外的员工信息
 			strcpy(oldName, S->name);
 			char newName[15];
 			scanf("%s", newName);
+			printf("新的姓名为：%s\n", newName);
 			printf("输入 1 确认修改，输入 0 取消：");
 			
 			scanf("%d", &confir);
@@ -72,6 +73,9 @@ struct employee * change_employee(struct employee *S)//修改除工号外的员工信息
 			{
 				strcpy(S->name, newName);
 				printf("!! 工号为 %d 的员工的姓名已由 %s 修改为 %s !!\n\n", S->number, oldName, S->name);
+				puts("\n该员工新的信息如下：");
+				puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
+				out_one_employee(S);
 				change_employee(S);
 			}
 			else
@@ -87,12 +91,16 @@ struct employee * change_employee(struct employee *S)//修改除工号外的员工信息
 			oldAge = S->age;
 			int newAge;
 			scanf("%d", &newAge);
+			printf("新的年龄为：%d\n", newAge);
 			printf("输入 1 确认修改，输入 0 取消：");
 			scanf("%d", &confir);
 			if (confir == 1)
 			{
 				S->age = newAge;
 				printf("!! 工号为 %d 的员工的年龄已由 %d 修改为 %d !!\n\n", S->number, oldAge, S->age);
+				puts("\n该员工新的信息如下：");
+				puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
+				out_one_employee(S);
 				change_employee(S);
 			}
 			else
@@ -108,12 +116,16 @@ struct employee * change_employee(struct employee *S)//修改除工号外的员工信息
 			strcpy(oldSex, S->sex);
 			char newSex[5];
 			scanf("%s", newSex);
+			printf("新的性别为：%s\n", newSex);
 			printf("输入 1 确认修改，输入 0 取消：");
 			scanf("%d", &confir);
 			if (confir == 1)
 			{
 				strcpy(S->sex, newSex);
 				printf("!! 工号为 %d 的员工的性别已由 %s 修改为 %s !!\n\n", S->number, oldSex, S->sex);
+				puts("\n该员工新的信息如下：");
+				puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
+				out_one_employee(S);
 				change_employee(S);
 			}
 			else
@@ -129,12 +141,16 @@ struct employee * change_employee(struct employee *S)//修改除工号外的员工信息
 			strcpy(oldDepart, S->department);
 			char newDepart[10];
 			scanf("%s", newDepart);
+			printf("新的部门为：%s\n", newDepart);
 			printf("输入 1 确认修改，输入 0 取消：");
 			scanf("%d", &confir);
 			if (confir == 1)
 			{
 				strcpy(S->department, newDepart);
 				printf("!! 工号为 %d 的员工的部门已由 %s 修改为 %s !!\n\n", S->number, oldDepart, S->department);
+				puts("\n该员工新的信息如下：");
+				puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
+				out_one_employee(S);
 				change_employee(S);
 			}
 			else
@@ -182,7 +198,7 @@ struct employee * change_employee(struct employee *S)//修改除工号外的员工信息
 				if (count_salemanager(p, S->department) == 1)
 				{
 					puts("修改信息失败！！");
-					return;
+					return NULL;
 				}
 				puts("已选择销售经理！");
 			}
@@ -254,6 +270,7 @@ struct employee * change_employee(struct employee *S)//修改除工号外的员工信息
 				{
 					puts("销售经理  !!\n");
 				}
+				puts("\n该员工新的信息如下：");
 				puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
 				out_one_employee(S);
 				change_employee(S);
@@ -273,12 +290,17 @@ struct employee * change_employee(struct employee *S)//修改除工号外的员工信息
 				oldWorktime = S->worktime;
 				int newWorktime;
 				scanf("%d", &newWorktime);
+				printf("新的工作时间为：%d\n", newWorktime);
 				printf("输入 1 确认修改，输入 0 取消：");
 				scanf("%d", &confir);
 				if (confir == 1)
 				{
 					S->worktime = newWorktime;
+					S->salary = newWorktime * 100;
 					printf("!! 工号为 %d 的员工的工作时间已由 %d 修改为 %d !!\n\n", S->number, oldWorktime, S->worktime);
+					puts("\n该员工新的信息如下：");
+					puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
+					out_one_employee(S);
 					change_employee(S);
 				}
 				else
@@ -295,13 +317,19 @@ struct employee * change_employee(struct employee *S)//修改除工号外的员工信息
 				double oldSalesvalue;
 				oldSalesvalue = S->salesvolume;
 				double newSalesvalue;
-				scanf("%d", &newSalesvalue);
+				scanf("%lf", &newSalesvalue);
+				printf("新的销售额为：%.2lf\n", newSalesvalue);
 				printf("输入 1 确认修改，输入 0 取消：");
 				scanf("%d", &confir);
 				if (confir == 1)
 				{
 					S->salesvolume = newSalesvalue;
-					printf("!! 工号为 %d 的员工的销售额已由 %d 修改为 %d !!\n\n", S->number, oldSalesvalue, S->salesvolume);
+					S->salary = newSalesvalue * 0.04;
+					printf("!! 工号为 %d 的员工的销售额已由 %.2lf 修改为 %.2lf !!\n\n", S->number, oldSalesvalue, S->salesvolume);
+					puts("\n该员工新的信息如下：");
+					puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
+					out_one_employee(S);
+					printf("\n");
 					if (count_salemanager(p, S->department) == 1)
 					{
 						struct employee *q = p;
@@ -320,11 +348,11 @@ struct employee * change_employee(struct employee *S)//修改除工号外的员工信息
 							}
 							search = search->next;
 						}
+						puts("\n该销售经理新的信息如下：");
 						puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
 						out_one_employee(search);
-
 					}
-					change_employee(S);
+					return p;
 				}
 				else
 				{
@@ -352,5 +380,5 @@ struct employee * change_employee(struct employee *S)//修改除工号外的员工信息
 	} while (choose != -1);
 	system("pause");
 	system("cls");
-	return S;
+	return p;
 }
