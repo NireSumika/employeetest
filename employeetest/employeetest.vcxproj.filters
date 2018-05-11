@@ -48,6 +48,9 @@
     <ClCompile Include="count_calculate_salemanager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="statistics.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="employee.h">

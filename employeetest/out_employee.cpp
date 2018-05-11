@@ -15,7 +15,7 @@ void out_employee(struct employee *S)
 		logo();
 		puts("————————————————————————————————");
 		puts("|                                                              |");
-		puts("|                       显示所有员工信息                       |");
+		puts("|                         显示员工信息                         |");
 		puts("|                                                              |");
 		puts("————————————————————————————————");
 		printf("\n");
@@ -25,42 +25,10 @@ void out_employee(struct employee *S)
 			out_one_employee(p);
 			count0++;
 			p = p->next;
+
+			//分页功能
+
 		}
 		printf("\n共有%d个员工\n\n", count0);
-		/*for (int i = 0; i < count; i++)
-		{
-		printf("%d\t", p->number);
-		printf("%s\t", p->name);
-		printf("%d\t", p->age);
-		printf("%s\t", p->sex);
-		printf("%s\t", p->department);
-		int temp = (int)p->role;
-		if (p->role == manager)
-		{
-		printf("经理      \t");
-		}
-		if (p->role == technician)
-		{
-		printf("技术员    \t");
-		}
-		if (p->role == saler)
-		{
-		printf("销售员    \t");
-		}
-		if (p->role == salemanager)
-		{
-		printf("销售经理  \t");
-		}
-		printf("%lf\t\t", p->salary);
-		if (p->role = technician)
-		{
-		printf("%d\t", p->worktime);
-		}
-		if (p->role = saler)
-		{
-		printf("\t\t%lf\t", p->salesvolume);
-		}
-		printf("\n");
-		}*/
 	}
 }

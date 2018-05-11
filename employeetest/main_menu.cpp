@@ -56,10 +56,19 @@ void main_menu(struct employee *S)
 			data = delete_employee(data);
 			break;
 		case 5:
-
+			if (data == NULL)
+			{
+				printf("当前员工表中没有信息！\n");
+				break;
+			}
 			break;
 		case 6:
-
+			if (data == NULL)
+			{
+				printf("当前员工表中没有信息！\n");
+				break;
+			}
+			statistics(data);
 			break;
 		case 7:
 			if (data == NULL)

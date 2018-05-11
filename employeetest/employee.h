@@ -47,6 +47,10 @@ void out_one_employee(struct employee *S);
 int count_salemanager(struct employee *S, char department[10]);
 
 double calculate_departmentSalesValue(struct employee *S, char department[10]);
+
+void calculate_salary(struct employee *S);
+
+void statistics(struct employee *S);
 //////////////////////////////////////////////////
 
 int main();

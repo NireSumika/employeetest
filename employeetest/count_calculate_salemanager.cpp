@@ -1,5 +1,6 @@
 #include "employee.h"
 
+//判断某部门是否有销售经理
 int count_salemanager(struct employee *S, char department[10])
 {
 	while (S != NULL)
@@ -19,6 +20,7 @@ int count_salemanager(struct employee *S, char department[10])
 	return 0;
 }
 
+//计算某部门销售额总和
 double calculate_departmentSalesValue(struct employee *S, char department[10])
 {
 	double DMSalesValue = 0;
@@ -35,3 +37,4 @@ double calculate_departmentSalesValue(struct employee *S, char department[10])
 	}
 	return DMSalesValue;
 }
+
