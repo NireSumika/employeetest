@@ -27,6 +27,10 @@ void out_employee(struct employee *S)
 			p = p->next;
 
 			//分页功能
+			if (count0)
+			{
+
+			}
 
 		}
 		printf("\n共有%d个员工\n\n", count0);
