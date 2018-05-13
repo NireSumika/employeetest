@@ -66,6 +66,7 @@ void main_menu(struct employee *S)
 				puts("\n当前员工表中没有信息！\n");
 				break;
 			}
+			puts("该功能尚在开发！！");
 			break;
 		case 6:
 			if (data == NULL)
@@ -73,7 +74,8 @@ void main_menu(struct employee *S)
 				puts("\n当前员工表中没有信息！\n");
 				break;
 			}
-			statistics(data);
+			puts("该功能尚在开发！！");
+			//statistics(data);
 			break;
 		case 7:
 			out_employee(data);
