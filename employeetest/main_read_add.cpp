@@ -9,32 +9,23 @@ struct employee * readfile()//读入函数，打开文件并将文件信息存入链表
 	struct employee *p;
 	if ((fp = fopen("employee.txt", "r")) == NULL)
 	{
-		printf("!!   文件打开失败   !!");
+		printf("!!   文件打开失败   !!\n");
 		return NULL;
 	}
 	int count = 0;
 	p = (struct employee*)malloc(sizeof(struct employee));
-	struct employee* S = p;
-	fread(p, sizeof(struct employee), 1, fp);
+	struct employee * S = p;
+	if (fread(p, sizeof(struct employee), 1, fp) != 1)
+	{
+		printf("!!   文件为空   !!\n");
+		return NULL;
+	}
 	count++;
 	number = p->number;
 	struct employee *q = p;
 	p = (struct employee*)malloc(sizeof(struct employee));
-	while (fread(p, sizeof(struct employee), 1, fp) > 0)//!feof(fp))
+	while (fread(p, sizeof(struct employee), 1, fp) > 0)
 	{
-		/*fscanf(fp, " %d", &s.number);
-		fscanf(fp, " %s", s.name);
-		fscanf(fp, " %d", &s.age);
-		fscanf(fp, " %s", s.sex);
-		fscanf(fp, " %s", s.department);
-		int temp;//临时变量，将4个岗位读取为4个整数，再强制转换为枚举类型
-		fscanf(fp, " %d", &temp);
-		s.role = (enum role)temp;
-		fscanf(fp, " %lf", &s.salary);
-		if (s.role == technician) fscanf(fp, " %d", &s.worktime);
-		if (s.role == saler)      fscanf(fp, " %lf", &s.salesvolume);
-		S[count] = s;
-		count++;*/
 		number = p->number;
 		count++;
 		q->next = p;
@@ -91,17 +82,11 @@ struct employee * add_employee(struct employee *S)//添加新员工信息
 		{
 			printf("请输入员工当月工作时间(小时，整数):");
 			scanf("%d", &(S->worktime));
-			S->salary = S->worktime * 100;
 		}
 		else if (S->role == saler)
 		{
 			printf("请输入员工当月销售额:");
 			scanf("%lf", &(S->salesvolume));
-			S->salary = S->salesvolume * 0.04;
-		}
-		else if (S->role == manager)
-		{
-			S->salary = 8000;
 		}
 		else if(S->role == salemanager)
 		{
@@ -110,10 +95,6 @@ struct employee * add_employee(struct employee *S)//添加新员工信息
 				puts("添加员工信息失败!!");
 				system("pause");
 				return NULL;
-			}
-			else
-			{
-				S->salary = ((calculate_departmentSalesValue(count, S->department) * 0.005) + 5000.0);
 			}
 		}
 		puts("\n员工信息已添加!\n");
@@ -150,41 +131,11 @@ struct employee * add_employee(struct employee *S)//添加新员工信息
 	{
 		printf("请输入员工当月工作时间(小时，整数):");
 		scanf("%d", &(q->worktime));
-		q->salary = q->worktime * 100;
 	}
 	else if (q->role == saler)
 	{
 		printf("请输入员工当月销售额:");
 		scanf("%lf", &(q->salesvolume));
-		q->salary = q->salesvolume * 0.04;
-		p->next = q;
-		q->last = p;
-		q->next = NULL;
-		puts("\n员工信息已添加!\n");
-		if (count_salemanager(get, q->department) == 1)
-		{
-			while (get != NULL)
-			{
-				if (strcmp(get->department, q->department) == 0)
-				{
-					if (get->role == salemanager)
-					{
-						double temp = 0;
-						temp = ((calculate_departmentSalesValue(S, get->department) * 0.005) + 5000.0);
-						get->salary = temp;
-						puts("\n该销售经理新的信息如下：");
-						puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
-						out_one_employee(get);
-						return S;
-					}
-				}
-				get = get->next;
-			}
-		}
-	}
-	else if (q->role == manager)
-	{
-		q->salary = 8000;
 	}
 	else if (q->role == salemanager)
 	{
@@ -193,14 +144,6 @@ struct employee * add_employee(struct employee *S)//添加新员工信息
 			puts("添加员工信息失败!!");
 			return NULL;
 		}
-		else
-		{
-			q->salary = ((calculate_departmentSalesValue(count, q->department) * 0.005) + 5000.0);
-		}
-	}
-	while (p->next != NULL)
-	{
-		p = p->next;
 	}
 	p->next = q;
 	q->last = p;

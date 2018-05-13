@@ -33,12 +33,17 @@ void main_menu(struct employee *S)
 			}
 			break;
 		case 2:
+			if (data == NULL)
+			{
+				puts("\n当前员工表中没有信息！\n");
+				break;
+			}
 			search_employee(data);
 			break;
 		case 3:
 			if (data == NULL)
 			{
-				printf("当前员工表中没有信息！\n");
+				puts("\n当前员工表中没有信息！\n");
 				break;
 			}
 			p = change_employee(data);
@@ -50,7 +55,7 @@ void main_menu(struct employee *S)
 		case 4:
 			if (data == NULL)
 			{
-				printf("当前员工表中没有信息！\n");
+				puts("\n当前员工表中没有信息！\n");
 				break;
 			}
 			data = delete_employee(data);
@@ -58,23 +63,19 @@ void main_menu(struct employee *S)
 		case 5:
 			if (data == NULL)
 			{
-				printf("当前员工表中没有信息！\n");
+				puts("\n当前员工表中没有信息！\n");
 				break;
 			}
 			break;
 		case 6:
 			if (data == NULL)
 			{
-				printf("当前员工表中没有信息！\n");
+				puts("\n当前员工表中没有信息！\n");
 				break;
 			}
 			statistics(data);
 			break;
 		case 7:
-			if (data == NULL)
-			{
-				printf("当前员工表中没有信息！\n");
-			}
 			out_employee(data);
 			break;
 		case 8:

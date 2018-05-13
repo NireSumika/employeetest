@@ -26,9 +26,9 @@ void welcomePage();
 
 void logo();
 
-void main_menu(struct employee *S);
+void main_menu(struct employee *S);//已改
 
-struct employee * readfile();
+struct employee * readfile();//已改
 
 void writefile(struct employee *S);
 
@@ -36,13 +36,17 @@ void search_employee(struct employee *S);
 
 struct employee * change_employee(struct employee *p);
 
-void out_employee(struct employee *S);
+void out_employee(struct employee *S);//
 
-struct employee * add_employee(struct employee *S);
+void out__salary_employee(struct employee *S);//
 
-struct employee * delete_employee(struct employee *S);
+struct employee * add_employee(struct employee *S);//已改
+
+struct employee * delete_employee(struct employee *S);//
 
 void out_one_employee(struct employee *S);
+
+void out_one_salary_employee(struct employee *S);//
 
 int count_salemanager(struct employee *S, char department[10]);
 
