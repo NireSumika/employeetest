@@ -145,6 +145,10 @@ struct employee * add_employee(struct employee *S)//添加新员工信息
 			return NULL;
 		}
 	}
+	while (p->next != NULL)
+	{
+		p = p->next;
+	}
 	p->next = q;
 	q->last = p;
 	q->next = NULL;
@@ -155,6 +159,10 @@ struct employee * add_employee(struct employee *S)//添加新员工信息
 //主函数
 int main()
 {
+	system("mode con cols=92 lines=34");
+
+	system("title 员工工资管理系统—beta版");
+
 	struct employee *data= NULL;
 
 	data = readfile();//调用读入函数打开文件

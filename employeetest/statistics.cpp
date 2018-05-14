@@ -1,8 +1,125 @@
 #include "employee.h"
 
+//统计并显示某个部门的平均工资、最低工资、最高工资
+void statistics_salary_average(struct employee *S)
+{
+	logo();
+	puts("————————————————————————————————");
+	puts("|                                                              |");
+	puts("|                         统计员工信息                         |");
+	puts("|                                                              |");
+	puts("|          统计某个部门的平均工资、最低工资、最高工资          |");
+	puts("|                                                              |");
+	puts("————————————————————————————————");
+	printf("\n");
+	printf("请输入要统计的部门：");
+	char statisticsDepartment[10];
+	scanf("%s", statisticsDepartment);
+	struct employee * p = S;
+	struct employee * q = S;
+	while (p != NULL)
+	{
+		if (strcmp(p->department, statisticsDepartment) == 0)
+		{
 
-//按岗位计算该岗位所有员工工资
-void calculate_salary(struct employee *S)
+			while (q != NULL)
+			{
+
+				q = q->next;
+			}
+		}
+		p = p->next;
+	}
+
+}
+
+//统计并显示某个部门超出平均工资的人数与员工信息
+void statistics_salary_outDepartAverage(struct employee *S)
+{
+	logo();
+	puts("————————————————————————————————");
+	puts("|                                                              |");
+	puts("|                         统计员工信息                         |");
+	puts("|                                                              |");
+	puts("|           统计某个部门超出平均工资的人数与员工信息           |");
+	puts("|                                                              |");
+	puts("————————————————————————————————");
+	printf("\n");
+	printf("请输入要统计的部门：");
+	char statisticsDepartment[10];
+	scanf("%s", statisticsDepartment);
+	struct employee * p = S;
+	struct employee * q = S;
+	while (p != NULL)
+	{
+		if (strcmp(p->department, statisticsDepartment) == 0)
+		{
+
+			while (q != NULL)
+			{
+
+				q = q->next;
+			}
+		}
+		p = p->next;
+	}
+
+}
+
+//统计并显示所有员工中的最低工资和最高工资员工的信息
+void statistics_salary_min_max(struct employee *S)
+{
+	logo();
+	puts("————————————————————————————————");
+	puts("|                                                              |");
+	puts("|                         统计员工信息                         |");
+	puts("|                                                              |");
+	puts("|         统计所有员工中的最低工资和最高工资员工的信息         |");
+	puts("|                                                              |");
+	puts("————————————————————————————————");
+	printf("\n");
+	struct employee * p = S;
+	struct employee * q = S;
+	while (p != NULL)
+	{
+		while (q != NULL)
+		{
+
+			q = q->next;
+		}
+		p = p->next;
+	}
+
+}
+
+//统计并显示所有员工超出平均工资的人数与员工信息
+void statistics_salary_outAverage(struct employee *S)
+{
+	logo();
+	puts("————————————————————————————————");
+	puts("|                                                              |");
+	puts("|                         统计员工信息                         |");
+	puts("|                                                              |");
+	puts("|           统计所有员工超出平均工资的人数与员工信息           |");
+	puts("|                                                              |");
+	puts("————————————————————————————————");
+	printf("\n");
+	struct employee * p = S;
+	struct employee * q = S;
+	while (p != NULL)
+	{
+		while (q != NULL)
+		{
+
+			q = q->next;
+		}
+		p = p->next;
+	}
+
+}
+
+//按岗位统计该岗位所有员工工资
+void statistics_salary_role(struct employee *S)
 {
 	logo();
 	puts("————————————————————————————————");
@@ -28,7 +145,7 @@ void calculate_salary(struct employee *S)
 	{
 		if (choose == (int)p->role)
 		{
-			out_one_employee(p);
+			out_one_salary_employee(p);
 			count++;
 		}
 		p = p->next;
@@ -38,7 +155,7 @@ void calculate_salary(struct employee *S)
 }
 
 //统计某部门总销售额
-void statistics_DMSalsvalue(struct employee *S)
+void statistics_salary_DMSalsvalue(struct employee *S)
 {
 	logo();
 	puts("————————————————————————————————");
@@ -52,16 +169,54 @@ void statistics_DMSalsvalue(struct employee *S)
 	printf("请输入要统计的部门：");
 	char statisticsDepartment[10];
 	scanf("%s", statisticsDepartment);
-	struct employee *p = S;
 	double salesV = 0;
-	salesV = calculate_departmentSalesValue(p, statisticsDepartment);
-	printf("\n\n %s 的总销售额为：%.2lf\n\n", statisticsDepartment, salesV);
+	salesV = calculate_departmentSalesValue(S, statisticsDepartment);
+	if (salesV != -1)
+	{
+		printf("\n\n %s 的总销售额为：%.2lf\n\n", statisticsDepartment, salesV);
+	}
 	return;
 }
 
 //统计功能
 void statistics(struct employee *S)
 {
+	struct employee * p = S;
+	char getDepartMent[10];
+	while (p != NULL)
+	{
+		if (p->role == manager)
+		{
+			p->salary = 8000.0;
+		}
+
+		else if (p->role = technician)
+		{
+			p->salary = (100 * (p->worktime));
+		}
+		else if (p->role == saler)
+		{
+			p->salary = (0.04 * (p->salesvolume));
+		}
+		else if (p->role == salemanager)
+		{
+			double allSalesValue = 0;
+			struct employee * q = S;
+			while (q != NULL)
+			{
+				if (strcmp(p->department, q->department) == 0)
+				{
+					if (q->role == saler)
+					{
+						allSalesValue += q->salesvolume;
+					}
+				}
+				q = q->next;
+			}
+			p->salary = allSalesValue;
+		}
+		p = p->next;
+	}
 	int choose;
 	do
 	{
@@ -85,22 +240,22 @@ void statistics(struct employee *S)
 		switch (choose)
 		{
 		case 1:
-			
+			statistics_salary_average(S);
 			break;
 		case 2:
-			
+			statistics_salary_outDepartAverage(S);
 			break;
 		case 3:
-			
+			statistics_salary_min_max(S);
 			break;
 		case 4:
-			
+			statistics_salary_outAverage(S);
 			break;
 		case 5:
-			calculate_salary(S);
+			statistics_salary_role(S);
 			break;
 		case 6:
-			statistics_DMSalsvalue(S);
+			statistics_salary_DMSalsvalue(S);
 			break;
 		case 0:
 			system("cls");

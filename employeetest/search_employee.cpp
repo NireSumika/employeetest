@@ -18,7 +18,7 @@ void search_department(struct employee *S)
 	int count0 = 0;
 	if (S != NULL)
 	{
-		puts("\n\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
+		puts("\n\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\n");
 	}
 	while (S != NULL)
 	{
@@ -57,7 +57,7 @@ void search_role(struct employee *S)
 		switch (choose)
 		{
 		case 1:
-			puts("\n\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
+			puts("\n\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\n");
 			while (S != NULL)
 			{
 				if (S->role == manager)
@@ -136,7 +136,7 @@ void search_name(struct employee *S)
 	printf("请输入要查询的员工姓名：");
 	scanf("%s", nameS);
 	int count0 = 0;
-	puts("\n\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
+	puts("\n\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\n");
 	while (S != NULL)
 	{
 		if (strcmp(S->name , nameS) == 0)
@@ -168,7 +168,7 @@ void search_number(struct employee *S)
 		search_employee(S);
 	}
 	int count0 = 0;
-	puts("\n\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
+	puts("\n\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\n");
 	while(S != NULL)
 	{
 		if (S->number == numberS)

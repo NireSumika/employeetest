@@ -24,16 +24,23 @@ int count_salemanager(struct employee *S, char department[10])
 double calculate_departmentSalesValue(struct employee *S, char department[10])
 {
 	double DMSalesValue = 0;
+	int count = 0;
 	while (S != NULL)
 	{
 		if (strcmp(S->department, department) == 0)
 		{
+			count++;
 			if (S->role == saler)
 			{
 				DMSalesValue += S->salesvolume;
 			}
 		}
 		S = S->next;
+	}
+	if (count == 0)
+	{
+		puts("\n\n没有该部门！！\n");
+		return -1;
 	}
 	return DMSalesValue;
 }

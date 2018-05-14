@@ -238,10 +238,12 @@ struct employee * change_employee(struct employee *p)//修改除工号外的员工信息
 				else if (S->role == technician)
 				{
 					puts("技术员  !!\n");
+					S->worktime = workTime;
 				}
 				else if (S->role == saler)
 				{
 					puts("销售员  !!\n");
+					S->salesvolume = salesValue;
 				}
 				else if (S->role == salemanager)
 				{
