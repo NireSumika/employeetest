@@ -29,6 +29,7 @@ void out_one_employee(struct employee *S)
 	printf("\n");
 }
 
+//输出单个员工信息,有工资选项
 void out_one_salary_employee(struct employee *S)
 {
 	printf("%-8d", S->number);

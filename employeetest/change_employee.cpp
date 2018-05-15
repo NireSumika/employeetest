@@ -4,11 +4,11 @@
 struct employee * change_employee(struct employee *p)//修改除工号外的员工信息
 {
 	logo();
-	puts("————————————————————————————————");
-	puts("|                                                              |");
-	puts("|                         修改员工信息                         |");
-	puts("|                                                              |");
-	puts("————————————————————————————————");
+	puts(" ————————————————————————————————————————————————————");
+	puts(" |                                                                                                      |");
+	puts(" |                                             修改员工信息                                             |");
+	puts(" |                                                                                                      |");
+	puts(" ————————————————————————————————————————————————————");
 	printf("\n");
 	int numberS = 0;
 	struct employee * S = p;
@@ -43,14 +43,14 @@ struct employee * change_employee(struct employee *p)//修改除工号外的员工信息
 	int choose = 0;
 	do
 	{
-		printf("1、姓名  2、年龄  3、性别  4、 部门  5、岗位  ");
+		printf("   1、姓名     2、年龄     3、性别     4、 部门     5、岗位     ");
 		if (S->role == technician)
 		{
-			printf("6、工作时间  ");
+			printf("6、工作时间     ");
 		}
 		else if (S->role == saler)
 		{
-			printf("6、销售额  ");
+			printf("6、销售额     ");
 		}
 		puts("\n");
 		int confir = 0;
@@ -230,7 +230,7 @@ struct employee * change_employee(struct employee *p)//修改除工号外的员工信息
 					S->salesvolume = NULL;
 				}
 				S->role = (enum role)newRole;
-				printf("!! 工号为 %d 的员工的岗位已由 %s 修改为 ", S->number, old_role);
+				printf("!! 工号为 %d 的员工的岗位已由 %s 修改为  ", S->number, old_role);
 				if (S->role == manager)
 				{
 					puts("经理  !!\n");
@@ -332,6 +332,10 @@ struct employee * change_employee(struct employee *p)//修改除工号外的员工信息
 			}
 			break;
 		case 0:
+			while (p->last != NULL)
+			{
+				p = p->last;
+			}
 			change_employee(p);
 			break;
 		default:

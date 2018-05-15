@@ -17,7 +17,7 @@ struct employee * readfile()//¶ÁÈëº¯Êý£¬´ò¿ªÎÄ¼þ²¢½«ÎÄ¼þÐÅÏ¢´æÈëÁ´±í
 	struct employee * S = p;
 	if (fread(p, sizeof(struct employee), 1, fp) != 1)
 	{
-		printf("!!   ÎÄ¼þÎª¿Õ   !!\n");
+		printf("\n!!       ÎÄ¼þÎª¿Õ       !!\n");
 		return NULL;
 	}
 	count++;
@@ -56,11 +56,11 @@ struct employee * add_employee(struct employee *S)//Ìí¼ÓÐÂÔ±¹¤ÐÅÏ¢
 		S->last = NULL;
 		S->number = ++number;
 		logo();
-		puts("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª");
-		puts("|                                                              |");
-		puts("|                         Ìí¼ÓÔ±¹¤ÐÅÏ¢                         |");
-		puts("|                                                              |");
-		puts("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª");
+		puts(" ¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª");
+		puts(" |                                                                                                      |");
+		puts(" |                                             Ìí¼ÓÔ±¹¤ÐÅÏ¢                                             |");
+		puts(" |                                                                                                      |");
+		puts(" ¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª");
 		printf("\n");
 		printf("Ô±¹¤±àºÅÎª£º%d", S->number);
 		printf("\n");
@@ -105,11 +105,11 @@ struct employee * add_employee(struct employee *S)//Ìí¼ÓÐÂÔ±¹¤ÐÅÏ¢
 	
 	q->number = ++number;
 	logo();
-	puts("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª");
-	puts("|                                                              |");
-	puts("|                         Ìí¼ÓÔ±¹¤ÐÅÏ¢                         |");
-	puts("|                                                              |");
-	puts("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª");
+	puts(" ¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª");
+	puts(" |                                                                                                      |");
+	puts(" |                                             Ìí¼ÓÔ±¹¤ÐÅÏ¢                                             |");
+	puts(" |                                                                                                      |");
+	puts(" ¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª");
 	printf("\n");
 	printf("Ô±¹¤±àºÅÎª£º%d", q->number);
 	printf("\n");
@@ -159,12 +159,12 @@ struct employee * add_employee(struct employee *S)//Ìí¼ÓÐÂÔ±¹¤ÐÅÏ¢
 //Ö÷º¯Êý
 int main()
 {
-	system("mode con cols=92 lines=34");
+	system("mode con cols=106 lines=38");
 
-	system("title Ô±¹¤¹¤×Ê¹ÜÀíÏµÍ³¡ªbeta°æ");
+	system("title Ô±¹¤¹¤×Ê¹ÜÀíÏµÍ³¡ª¡ªbeta°æ");
 
 	struct employee *data= NULL;
-
+	
 	data = readfile();//µ÷ÓÃ¶ÁÈëº¯Êý´ò¿ªÎÄ¼þ
 
 	welcomePage();//»¶Ó­½çÃæ

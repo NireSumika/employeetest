@@ -44,4 +44,3 @@ double calculate_departmentSalesValue(struct employee *S, char department[10])
 	}
 	return DMSalesValue;
 }
-
