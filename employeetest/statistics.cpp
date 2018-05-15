@@ -1,5 +1,113 @@
 #include "employee.h"
 
+//以下是计算功能函数
+
+//统计某部门平均工资
+double get_DM_aveSalary(struct employee *S, char depart[10])
+{
+	double DM_aveSalary = 0, DM_AllSalary = 0;
+	int count = 0;
+	while (S != NULL)
+	{
+		if (strcmp(S->department, depart) == 0)
+		{
+			DM_AllSalary += S->salary;
+			count++;
+		}
+		S = S->next;
+	}
+	DM_aveSalary = (DM_AllSalary / count);
+	return DM_aveSalary;
+}
+
+//统计某部门最低工资
+double get_DM_minSalary(struct employee *S, char depart[10])
+{
+	double DM_minSalary = 0, t = 0;
+	DM_minSalary = S->salary;
+	while (S != NULL)
+	{
+		if (strcmp(S->department, depart) == 0)
+		{
+			if (S->salary <= DM_minSalary)
+			{
+				DM_minSalary = S->salary;
+			}
+		}
+		S = S->next;
+	}
+	return DM_minSalary;
+}
+
+//统计某部门最高工资
+double get_DM_maxSalary(struct employee *S, char depart[10])
+{
+	double DM_maxSalary = 0;
+	DM_maxSalary = S->salary;
+	while (S != NULL)
+	{
+		if (strcmp(S->department, depart) == 0)
+		{
+			if (S->salary >= DM_maxSalary)
+			{
+				DM_maxSalary = S->salary;
+			}
+		}
+		S = S->next;
+	}
+	return DM_maxSalary;
+}
+
+//统计所有人平均工资
+double get_ALL_aveSalary(struct employee *S)
+{
+	double ALL_aveSalary = 0, ALL_AllSalary = 0;
+	int count = 0;
+	while (S != NULL)
+	{
+		ALL_AllSalary += S->salary;
+		count++;
+		S = S->next;
+	}
+	ALL_aveSalary = (ALL_AllSalary / count);
+	return ALL_aveSalary;
+}
+
+//统计所有人最低工资
+double get_ALL_minSalary(struct employee *S)
+{
+	double ALL_minSalary = 0;
+	ALL_minSalary = S->salary;
+	while (S != NULL)
+	{
+		if (S->salary <= ALL_minSalary)
+		{
+			ALL_minSalary = S->salary;
+		}
+		S = S->next;
+	}
+	return ALL_minSalary;
+}
+
+//统计所有人最高工资
+double get_ALL_maxSalary(struct employee *S)
+{
+	double ALL_maxSalary = 0;
+	ALL_maxSalary = S->salary;
+	while (S != NULL)
+	{
+		if (S->salary >= ALL_maxSalary)
+		{
+			ALL_maxSalary = S->salary;
+		}
+		S = S->next;
+	}
+	return ALL_maxSalary;
+}
+
+/////////////////////////////////////////////////
+
+
 //统计并显示某个部门的平均工资、最低工资、最高工资
 void statistics_salary_average(struct employee *S)
 {
@@ -15,22 +123,41 @@ void statistics_salary_average(struct employee *S)
 	printf("请输入要统计的部门：");
 	char statisticsDepartment[10];
 	scanf("%s", statisticsDepartment);
-	struct employee * p = S;
-	struct employee * q = S;
+	double DM_ave = get_DM_aveSalary(S, statisticsDepartment);
+	double DM_min = get_DM_minSalary(S, statisticsDepartment);
+	double DM_max = get_DM_maxSalary(S, statisticsDepartment);
+	printf("该部门  %s  的:\n", statisticsDepartment);
+	printf("平均工资为： %.2lf \n", DM_ave);
+	printf("最低工资为： %.2lf \n", DM_min);
+	printf("最高工资为： %.2lf \n", DM_max);
+	puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
+	struct employee *p = S;
 	while (p != NULL)
 	{
 		if (strcmp(p->department, statisticsDepartment) == 0)
 		{
-
-			while (q != NULL)
+			if (p->salary == DM_min)
 			{
-
-				q = q->next;
+				out_one_salary_employee(p);
 			}
 		}
 		p = p->next;
 	}
-
+	struct employee *q = S;
+	printf("\n");
+	while (q != NULL)
+	{
+		if (strcmp(q->department, statisticsDepartment) == 0)
+		{
+			if (q->salary == DM_max)
+			{
+				out_one_salary_employee(q);
+			}
+		}
+		q = q->next;
+	}
+	printf("\n");
+	return;
 }
 
 //统计并显示某个部门超出平均工资的人数与员工信息
@@ -48,22 +175,25 @@ void statistics_salary_outDepartAverage(struct employee *S)
 	printf("请输入要统计的部门：");
 	char statisticsDepartment[10];
 	scanf("%s", statisticsDepartment);
+	double DM_ave = get_DM_aveSalary(S, statisticsDepartment);
+	int count = 0;
+	printf("\n该部门  %s  的平均工资为： %.2lf\n", statisticsDepartment, DM_ave);
+	puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
 	struct employee * p = S;
-	struct employee * q = S;
 	while (p != NULL)
 	{
 		if (strcmp(p->department, statisticsDepartment) == 0)
 		{
-
-			while (q != NULL)
+			if (p->salary > DM_ave)
 			{
-
-				q = q->next;
+				count++;
+				out_one_salary_employee(p);
 			}
 		}
 		p = p->next;
 	}
-
+	printf("\n该部门超出平均工资的人数共有 %d 人\n\n", count);
+	return;
 }
 
 //统计并显示所有员工中的最低工资和最高工资员工的信息
@@ -77,19 +207,32 @@ void statistics_salary_min_max(struct employee *S)
 	puts(" |                             统计所有员工中的最低工资和最高工资员工的信息                             |");
 	puts(" |                                                                                                      |");
 	puts(" ————————————————————————————————————————————————————");
+	double min = get_ALL_minSalary(S);
+	double max = get_ALL_maxSalary(S);
+	printf("\n所有员工中的最低工资为： %.2lf", min);
+	printf("\n所有员工中的最高工资为： %.2lf", max);
 	printf("\n");
+	puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
 	struct employee * p = S;
 	struct employee * q = S;
 	while (p != NULL)
 	{
-		while (q != NULL)
+		if (p->salary == min)
 		{
-
-			q = q->next;
+			out_one_salary_employee(p);
 		}
 		p = p->next;
 	}
-
+	while (q != NULL)
+	{
+		if (q->salary == max)
+		{
+			out_one_salary_employee(q);
+		}
+		q = q->next;
+	}
+	printf("\n");
+	return;
 }
 
 //统计并显示所有员工超出平均工资的人数与员工信息
@@ -105,17 +248,21 @@ void statistics_salary_outAverage(struct employee *S)
 	puts(" ————————————————————————————————————————————————————");
 	printf("\n");
 	struct employee * p = S;
-	struct employee * q = S;
+	double ave = get_ALL_aveSalary(S);
+	printf("所有员工平均工资为： %.2lf\n", ave);
+	puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
+	int count = 0;
 	while (p != NULL)
 	{
-		while (q != NULL)
+		if (p->salary > ave)
 		{
-
-			q = q->next;
+			count++;
+			out_one_salary_employee(p);
 		}
 		p = p->next;
 	}
-
+	printf("\n所有员工中超出平均工资的人数共有 %d 人\n\n", count);
+	return;
 }
 
 //按岗位统计该岗位所有员工工资
@@ -179,7 +326,7 @@ void statistics_salary_DMSalsvalue(struct employee *S)
 	return;
 }
 
-//统计功能
+//统计功能主菜单
 void statistics(struct employee *S)
 {
 	struct employee * p = S;
@@ -259,7 +406,7 @@ void statistics(struct employee *S)
 			statistics_salary_DMSalsvalue(S);
 			break;
 		case 0:
-			main_menu(S);
+			return;
 			break;
 		default:
 			puts("\n输入错误，请重新输入\n");
@@ -271,3 +418,7 @@ void statistics(struct employee *S)
 	} while (choose != 0);
 	return;
 }
+
+
+
+
