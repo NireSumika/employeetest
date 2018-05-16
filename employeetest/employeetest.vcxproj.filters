@@ -51,6 +51,9 @@
     <ClCompile Include="statistics.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="sort_Salary.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="employee.h">

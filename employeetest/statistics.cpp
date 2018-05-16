@@ -16,6 +16,12 @@ double get_DM_aveSalary(struct employee *S, char depart[10])
 		}
 		S = S->next;
 	}
+	if (count == 0)
+	{
+		puts("该部门无员工！！\n");
+		system("pause");
+		return 0;
+	}
 	DM_aveSalary = (DM_AllSalary / count);
 	return DM_aveSalary;
 }
@@ -23,7 +29,8 @@ double get_DM_aveSalary(struct employee *S, char depart[10])
 //统计某部门最低工资
 double get_DM_minSalary(struct employee *S, char depart[10])
 {
-	double DM_minSalary = 0, t = 0;
+	double DM_minSalary = 0;
+	int count = 0;
 	DM_minSalary = S->salary;
 	while (S != NULL)
 	{
@@ -33,8 +40,15 @@ double get_DM_minSalary(struct employee *S, char depart[10])
 			{
 				DM_minSalary = S->salary;
 			}
+			count++;
 		}
 		S = S->next;
+	}
+	if (count == 0)
+	{
+		puts("该部门无员工！！\n");
+		system("pause");
+		return 0;
 	}
 	return DM_minSalary;
 }
@@ -43,6 +57,7 @@ double get_DM_minSalary(struct employee *S, char depart[10])
 double get_DM_maxSalary(struct employee *S, char depart[10])
 {
 	double DM_maxSalary = 0;
+	int count = 0;
 	DM_maxSalary = S->salary;
 	while (S != NULL)
 	{
@@ -52,8 +67,15 @@ double get_DM_maxSalary(struct employee *S, char depart[10])
 			{
 				DM_maxSalary = S->salary;
 			}
+			count++;
 		}
 		S = S->next;
+	}
+	if (count == 0)
+	{
+		puts("该部门无员工！！\n");
+		system("pause");
+		return 0;
 	}
 	return DM_maxSalary;
 }
@@ -126,6 +148,11 @@ void statistics_salary_average(struct employee *S)
 	double DM_ave = get_DM_aveSalary(S, statisticsDepartment);
 	double DM_min = get_DM_minSalary(S, statisticsDepartment);
 	double DM_max = get_DM_maxSalary(S, statisticsDepartment);
+	if (DM_ave == 0)
+	{
+		statistics_salary_average(S);
+		return;
+	}
 	printf("该部门  %s  的:\n", statisticsDepartment);
 	printf("平均工资为： %.2lf \n", DM_ave);
 	printf("最低工资为： %.2lf \n", DM_min);
@@ -176,6 +203,11 @@ void statistics_salary_outDepartAverage(struct employee *S)
 	char statisticsDepartment[10];
 	scanf("%s", statisticsDepartment);
 	double DM_ave = get_DM_aveSalary(S, statisticsDepartment);
+	if (DM_ave == 0)
+	{
+		statistics_salary_outDepartAverage(S);
+		return;
+	}
 	int count = 0;
 	printf("\n该部门  %s  的平均工资为： %.2lf\n", statisticsDepartment, DM_ave);
 	puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
@@ -326,8 +358,8 @@ void statistics_salary_DMSalsvalue(struct employee *S)
 	return;
 }
 
-//统计功能主菜单
-void statistics(struct employee *S)
+//先计算工资
+struct employee * sta_salary(struct employee *S)
 {
 	struct employee * p = S;
 	struct employee * q = S;
@@ -349,7 +381,7 @@ void statistics(struct employee *S)
 		else if (p->role == salemanager)
 		{
 			double allSalesValue = 0;
-			
+
 			while (q != NULL)
 			{
 				if (strcmp(p->department, q->department) == 0)
@@ -365,6 +397,14 @@ void statistics(struct employee *S)
 		}
 		p = p->next;
 	}
+	return S;
+}
+
+
+//统计功能主菜单
+void statistics(struct employee *S)
+{
+	S = sta_salary(S);
 	int choose;
 	do
 	{
@@ -413,8 +453,6 @@ void statistics(struct employee *S)
 			fflush(stdin);//清除choose的值,避免输入非数字后死循环
 			break;
 		}
-		system("pause");
-		system("cls");
 	} while (choose != 0);
 	return;
 }

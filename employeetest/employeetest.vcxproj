@@ -156,6 +156,7 @@
     <ClCompile Include="out_employee.cpp" />
     <ClCompile Include="out_one_employee.cpp" />
     <ClCompile Include="search_employee.cpp" />
+    <ClCompile Include="sort_Salary.cpp" />
     <ClCompile Include="statistics.cpp" />
     <ClCompile Include="welcome_page.cpp" />
     <ClCompile Include="writefile.cpp" />

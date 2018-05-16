@@ -198,13 +198,9 @@ void list_page(struct employee * S)
 			} while (flag == 0);
 			break;*/
 		case 0:
-			while (S->last != NULL)
-			{
-				S = S->last;
-			}
 			thisPage = 0;
 			finalPage = -1;
-			search_employee(S);
+			return;
 			break;
 		default:
 			printf("\n输入错误！请重新选择！\n\n");

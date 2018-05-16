@@ -201,9 +201,9 @@ void search_employee(struct employee *S)
 		puts(" |                                                                                                      |");
 		puts(" |                                             查找员工信息                                             |");
 		puts(" |                                                                                                      |");
-		puts(" |           1、按部门查找         2、按岗位查找         3、按姓名查找         4、按工号查找            |");
+		puts(" |                1、按部门查找                2、按岗位查找                3、按姓名查找               |");
 		puts(" |                                                                                                      |");
-		puts(" |           5、分页显示所有员工信息                                           0、返回主菜单            |");
+		puts(" |                4、按工号查找                                             0、返回主菜单               |");
 		puts(" |                                                                                                      |");
 		puts(" ————————————————————————————————————————————————————");
 		printf("\n");
@@ -222,9 +222,6 @@ void search_employee(struct employee *S)
 				break;
 			case 4:
 				search_number(S);
-				break;
-			case 5:
-				list_page(S);
 				break;
 			case 0:
 				system("cls");

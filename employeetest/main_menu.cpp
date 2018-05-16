@@ -66,7 +66,7 @@ void main_menu(struct employee *S)
 				puts("\n当前员工表中没有信息！\n");
 				break;
 			}
-			puts("该功能尚在开发！！");
+			sort_Salary(data);
 			break;
 		case 6:
 			if (data == NULL)
@@ -74,14 +74,23 @@ void main_menu(struct employee *S)
 				puts("\n当前员工表中没有信息！\n");
 				break;
 			}
-			//puts("该功能尚在开发！！");
 			statistics(data);
 			break;
 		case 7:
-			//list_page(data);
-			out_employee(data);
+			if (data == NULL)
+			{
+				puts("\n当前员工表中没有信息！\n");
+				break;
+			}
+			list_page(data);//分页输出
+			//out_employee(data);//仅输出
 			break;
 		case 8:
+			if (data == NULL)
+			{
+				puts("\n当前员工表中没有信息！\n");
+				break;
+			}
 			writefile(data);
 			break;
 		case 0:
@@ -112,7 +121,5 @@ void main_menu(struct employee *S)
 			fflush(stdin);//清除choose的值,避免输入非数字后死循环
 			break;
 		}
-		system("pause");
-		system("cls");
 	} while (choose != -1);
 }
