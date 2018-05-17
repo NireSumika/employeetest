@@ -4,43 +4,66 @@
 //所有员工按工资从高到低排序
 struct employee * sort_A_Salary(struct employee * S)
 {
-	struct employee * nHead = (struct employee *)malloc(sizeof(struct employee));
-	struct employee * tt = nHead;
+	if (S->next == NULL)
+	{
+		return S;
+	}
+	int count0 = 0;
 	struct employee * p = S;
-	struct employee * max;
-	struct employee * t;
-	struct employee * ret;
 	while (p != NULL)
 	{
-		t = p;
-		max = p;
-		while (t != NULL)
-		{
-			if (t->salary > max->salary)
-			{
-				max = t;
-			}
-			t = t->next;
-		}
-		if (max->last != NULL)
-		{
-			max->last->next = max->next;
-		}
-		if (max->next != NULL)
-		{
-			max->next->last = max->last;
-		}
-		tt->next = max;
-		max->last = tt;
-		tt = max;
+		count0++;
 		p = p->next;
 	}
-	max->next = NULL;
-	ret = nHead->next;
-	free(nHead);
-	ret->last = NULL;
-	return ret;
+
+	struct employee * nHead = (struct employee *)malloc(sizeof(struct employee));//创建储存排序后的数据的链表
+	struct employee * nFinal = nHead;
+
+	
+	struct employee * q = S;//用于每次从头开始
+	struct employee * max = S;
+	struct employee * t;
+	//struct employee * ret;
+	//memcpy(nHead, S, sizeof(struct employee));
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	for(int i=0; i<count0; i++)
+	{
+		q = S;
+		max = S;
+		for (int j = 0; j < count0; j++)
+		{
+			if (q->salary > max->salary && nFinal->salary > q->salary)
+			{
+				max = q;
+				break;
+			}
+			q = q->next;
+		}
+		t = (struct employee *)malloc(sizeof(struct employee));
+		nFinal->next = t;
+		memcpy(t, max, sizeof(struct employee));
+		t->last = nFinal;
+		nFinal = nFinal->next;
+		t->next = NULL;
+	}
+	return nHead->next;
+	
 }
+
+
+
 
 //某部门员工按工资从高到低排序
 struct employee * sort_DM_Salary(struct employee * S, char depart[10])

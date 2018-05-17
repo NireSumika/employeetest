@@ -121,5 +121,7 @@ void main_menu(struct employee *S)
 			fflush(stdin);//清除choose的值,避免输入非数字后死循环
 			break;
 		}
+		system("pause");
 	} while (choose != -1);
+	
 }

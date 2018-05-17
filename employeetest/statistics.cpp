@@ -146,13 +146,14 @@ void statistics_salary_average(struct employee *S)
 	char statisticsDepartment[10];
 	scanf("%s", statisticsDepartment);
 	double DM_ave = get_DM_aveSalary(S, statisticsDepartment);
-	double DM_min = get_DM_minSalary(S, statisticsDepartment);
-	double DM_max = get_DM_maxSalary(S, statisticsDepartment);
 	if (DM_ave == 0)
 	{
 		statistics_salary_average(S);
 		return;
 	}
+	double DM_min = get_DM_minSalary(S, statisticsDepartment);
+	double DM_max = get_DM_maxSalary(S, statisticsDepartment);
+	
 	printf("该部门  %s  的:\n", statisticsDepartment);
 	printf("平均工资为： %.2lf \n", DM_ave);
 	printf("最低工资为： %.2lf \n", DM_min);
@@ -184,6 +185,7 @@ void statistics_salary_average(struct employee *S)
 		q = q->next;
 	}
 	printf("\n");
+	system("pause");
 	return;
 }
 
@@ -225,6 +227,7 @@ void statistics_salary_outDepartAverage(struct employee *S)
 		p = p->next;
 	}
 	printf("\n该部门超出平均工资的人数共有 %d 人\n\n", count);
+	system("pause");
 	return;
 }
 
@@ -264,6 +267,7 @@ void statistics_salary_min_max(struct employee *S)
 		q = q->next;
 	}
 	printf("\n");
+	system("pause");
 	return;
 }
 
@@ -294,6 +298,7 @@ void statistics_salary_outAverage(struct employee *S)
 		p = p->next;
 	}
 	printf("\n所有员工中超出平均工资的人数共有 %d 人\n\n", count);
+	system("pause");
 	return;
 }
 
@@ -331,6 +336,7 @@ void statistics_salary_role(struct employee *S)
 		p = p->next;
 	}
 	printf("\n共有 %d 个结果\n\n", count);
+	system("pause");
 	return;
 }
 
@@ -355,6 +361,7 @@ void statistics_salary_DMSalsvalue(struct employee *S)
 	{
 		printf("\n %s 的总销售额为：%.2lf\n\n", statisticsDepartment, salesV);
 	}
+	system("pause");
 	return;
 }
 
@@ -381,7 +388,6 @@ struct employee * sta_salary(struct employee *S)
 		else if (p->role == salemanager)
 		{
 			double allSalesValue = 0;
-
 			while (q != NULL)
 			{
 				if (strcmp(p->department, q->department) == 0)
@@ -444,6 +450,10 @@ void statistics(struct employee *S)
 			break;
 		case 6:
 			statistics_salary_DMSalsvalue(S);
+			break;
+		case 7:
+			out_salary_employee(S);
+			system("pause");
 			break;
 		case 0:
 			return;
