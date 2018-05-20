@@ -340,6 +340,86 @@ void statistics_salary_role(struct employee *S)
 	return;
 }
 
+//egg显示功能
+void out_eg(struct employee * S)
+{
+	/*int i;
+	int j;
+	char egg[104];
+	for (i = 0;; i++)
+	{
+		for (j = 0; j <= i; j++)
+		{
+			egg[j] = '_';
+		}
+		egg[j] = '>';
+		j++;
+		for(j = i+2;j<104;j++)
+		{
+			egg[j] = '-';
+		}
+		puts(egg);
+		if (i == 103) i = 0;
+	}*/
+	while (1)
+	{
+		puts("*");
+		puts("    *");
+		puts("        *");
+		puts("            *");
+		puts("                *");
+		puts("                    *");
+		puts("                        *"); 
+		puts("                            *");
+		puts("                                *");
+		puts("                                    *");
+		puts("                                        *");
+		puts("                                            *");
+		puts("                                                *");
+		puts("                                                    *");
+		puts("                                                        *");
+		puts("                                                            *");
+		puts("                                                                *"); 
+		puts("                                                                    *");
+		puts("                                                                        *");
+		puts("                                                                            *");
+		puts("                                                                                *"); 
+		puts("                                                                                    *");
+		puts("                                                                                        *");
+		puts("                                                                                            *");
+		puts("                                                                                                *");
+		puts("                                                                                                    *");
+		puts("                                                                                                        *");
+	/*	puts("                                                                                                    *");
+		puts("                                                                                                *");
+		puts("                                                                                            *");
+		puts("                                                                                        *");
+		puts("                                                                                    *");
+		puts("                                                                                *");
+		puts("                                                                            *");
+		puts("                                                                        *");
+		puts("                                                                    *");
+		puts("                                                                *");
+		puts("                                                            *");
+		puts("                                                        *");
+		puts("                                                    *");
+		puts("                                                *");
+		puts("                                            *");
+		puts("                                        *");
+		puts("                                    *");
+		puts("                                *");
+		puts("                            *");
+		puts("                        *");
+		puts("                    *");
+		puts("                *");
+		puts("            *");
+		puts("        *");
+		puts("    *");
+		puts("*");*/
+	}
+}
+
+
 //统计某部门总销售额
 void statistics_salary_DMSalsvalue(struct employee *S)
 {
@@ -399,6 +479,7 @@ struct employee * sta_salary(struct employee *S)
 				}
 				q = q->next;
 			}
+			q = S;
 			p->salary = (5000 + (allSalesValue * 0.005));
 		}
 		p = p->next;
@@ -425,6 +506,7 @@ void statistics(struct employee *S)
 		puts(" |                          4、统计并显示所有员工超出平均工资的人数与员工信息                           |");
 		puts(" |                          5、按岗位统计该岗位所有员工工资                                             |");
 		puts(" |                          6、统计某部门总销售额                                                       |");
+		puts(" |                          7、统计所有员工工资并显示                                                   |");
 		puts(" |                          0、返回主菜单                                                               |");
 		puts(" |                                                                                                      |");
 		puts(" ————————————————————————————————————————————————————");
@@ -452,7 +534,7 @@ void statistics(struct employee *S)
 			statistics_salary_DMSalsvalue(S);
 			break;
 		case 7:
-			out_salary_employee(S);
+			list_out(S);
 			system("pause");
 			break;
 		case 0:
@@ -467,6 +549,22 @@ void statistics(struct employee *S)
 	return;
 }
 
-
+//统计分页
+void page(struct employee * S)
+{
+	logo();
+	puts(" ————————————————————————————————————————————————————");
+	puts(" |                                                                                                      |");
+	puts(" |                                           Congratulations!                                           |");
+	puts(" |                                                                                                      |");
+	puts(" |                        ∩_∩        您是有多无聊才会找到这个彩蛋        ∩_∩                        |");
+	puts(" |                                                                                                      |");
+	puts(" ————————————————————————————————————————————————————");
+	printf("\n");
+	printf("                                      ");
+	system("pause");
+	out_eg(S);
+	return;
+}
 
 

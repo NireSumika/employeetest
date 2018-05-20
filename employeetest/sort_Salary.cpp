@@ -8,99 +8,175 @@ struct employee * sort_A_Salary(struct employee * S)
 	{
 		return S;
 	}
-	int count0 = 0;
-	struct employee * p = S;
-	while (p != NULL)
+	//创建新链表以避免对原链表的更改
+	struct employee * x = (struct employee *)malloc(sizeof(struct employee));
+	struct employee * newS = x;
+	x->last = NULL;
+	x->next = NULL;
+	struct employee * temp;
+	struct employee * oHead = S;
+	struct employee * y = oHead;
+	memcpy(x, y, sizeof(struct employee));
+	y = y->next;
+	while (y != NULL)
 	{
-		count0++;
-		p = p->next;
+		temp = (struct employee *)malloc(sizeof(struct employee));
+		memcpy(temp, y, sizeof(struct employee));
+		x->next = temp;
+		temp->last = x;
+		temp->next = NULL;
+		x = x->next;
+		y = y->next;
 	}
-
 	struct employee * nHead = (struct employee *)malloc(sizeof(struct employee));//创建储存排序后的数据的链表
-	struct employee * nFinal = nHead;
-
-	
-	struct employee * q = S;//用于每次从头开始
-	struct employee * max = S;
+	struct employee * tt = nHead;
+	struct employee * q = newS;//用于每次从头开始
+	struct employee * max;
 	struct employee * t;
-	//struct employee * ret;
-	//memcpy(nHead, S, sizeof(struct employee));
+	struct employee * ret;
 	
-
-
-
-
-
-
-
-
-
-
-
-
-	for(int i=0; i<count0; i++)
+	while (1)
 	{
-		q = S;
-		max = S;
-		for (int j = 0; j < count0; j++)
+		t = q;
+		max = q;
+		while (t != NULL)
 		{
-			if (q->salary > max->salary && nFinal->salary > q->salary)
+			if (t->salary > max->salary)
 			{
-				max = q;
-				break;
+				max = t;//找到最大
 			}
-			q = q->next;
+			t = t->next;
 		}
-		t = (struct employee *)malloc(sizeof(struct employee));
-		nFinal->next = t;
-		memcpy(t, max, sizeof(struct employee));
-		t->last = nFinal;
-		nFinal = nFinal->next;
-		t->next = NULL;
+		/*if (max->last != NULL && max->next != NULL)
+		{
+			max->last->next = max->next;
+			max->next->last = max->last;
+		}
+		else if(max->last == NULL && max->next != NULL)
+		{
+			max->next->last = NULL;
+		}
+		else if(max->last != NULL && max->next == NULL)
+		{
+			max->last->next = NULL;
+		}*/
+		if (max->last != NULL)
+		{
+			max->last->next = max->next;
+		}
+		if (max->next != NULL)
+		{
+			if (max->last == NULL)
+			{
+				q = max->next;
+			}
+			max->next->last = max->last;
+		}
+		tt->next = max;
+		max->last = tt;
+		tt = max;
+		if (q->last == NULL && q->next == NULL)
+		{
+			max = q;
+			tt->next = max;
+			max->last = tt;
+			tt = max;
+			break;
+		}
 	}
-	return nHead->next;
+	max->next = NULL;
+	ret = nHead->next;
+	free(nHead);
+	ret->last = NULL;
+	return ret;
 	
 }
 
-
-
-
 //某部门员工按工资从高到低排序
-struct employee * sort_DM_Salary(struct employee * S, char depart[10])
+struct employee * sort_Depart_Salary(struct employee * S, char depart[10])
 {
+	int count = 0;
+	struct employee *z = S;
+	while (z != NULL)
+	{
+		if (strcmp(z->department, depart) == 0)
+		{
+			count = 1;
+			break;
+		}
+		z = z->next;
+	}
+	if (count == 0)
+	{
+		puts("该部门无员工！！\n");
+		system("pause");
+		return NULL;
+	}
+	struct employee * x = (struct employee *)malloc(sizeof(struct employee));
+	struct employee * newS = x;
+	x->last = NULL;
+	x->next = NULL;
+	struct employee * temp;
+	struct employee * oHead = S;
+	struct employee * y = oHead;
+	memcpy(x, y, sizeof(struct employee));
+	y = y->next;
+	while (y != NULL)
+	{
+		temp = (struct employee *)malloc(sizeof(struct employee));
+		memcpy(temp, y, sizeof(struct employee));
+		x->next = temp;
+		temp->last = x;
+		temp->next = NULL;
+		x = x->next;
+		y = y->next;
+	}
+	
 	struct employee * nHead = (struct employee *)malloc(sizeof(struct employee));
 	struct employee * tt = nHead;
-	struct employee * p = S;
+	struct employee * p = newS;
+	struct employee * q = newS;
 	struct employee * max;
 	struct employee * t;
 	struct employee * ret;
 	while (p != NULL)
 	{
-		if (strcmp(p->department, depart) == 0)
+		t = p;
+		max = p;
+		while (t != NULL)
 		{
-			t = p;
-			max = p;
-			while (t != NULL)
+			if (strcmp(t->department, depart) == 0)
 			{
 				if (t->salary > max->salary)
 				{
 					max = t;
 				}
-				t = t->next;
 			}
-			if (max->last != NULL)
+			t = t->next;
+		}
+		if (max->last != NULL)
+		{
+			max->last->next = max->next;
+		}
+		if (max->next != NULL)
+		{
+			if (max->last == NULL)
 			{
-				max->last->next = max->next;
+				p = max->next;
 			}
-			if (max->next != NULL)
-			{
-				max->next->last = max->last;
-			}
+			max->next->last = max->last;
+		}
+		tt->next = max;
+		max->last = tt;
+		tt = max;
+		if (p->last == NULL && p->next == NULL)
+		{
+			max = p;
 			tt->next = max;
 			max->last = tt;
 			tt = max;
+			break;
 		}
-		p = p->next;
 	}
 	max->next = NULL;
 	ret = nHead->next;
@@ -121,12 +197,7 @@ void sort_ALL_Salary(struct employee * S)
 	puts(" |                                                                                                      |");
 	puts(" ————————————————————————————————————————————————————");
 	S = sort_A_Salary(S);
-	puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
-	while (S != NULL)
-	{
-		out_one_salary_employee(S);
-		S = S->next;
-	}
+	list_out(S);
 	puts("\n");
 	system("pause");
 	return;
@@ -147,11 +218,18 @@ void sort_DM_Salary(struct employee * S)
 	char depart[10];
 	printf("请输入要排序的部门：");
 	scanf("%s", depart);
-	S = sort_DM_Salary(S, depart);
+	S = sort_Depart_Salary(S, depart);
+	if (S == NULL)
+	{
+		return;
+	}
 	puts("\n工号\t姓名\t年龄\t性别\t部门\t\t岗位\t\t工作时间\t销售额\t\t当月工资\n");
 	while (S != NULL)
 	{
-		out_one_salary_employee(S);
+		if (strcmp(S->department, depart) == 0)
+		{
+			out_one_salary_employee(S);
+		}
 		S = S->next;
 	}
 	printf("\n");

@@ -56,6 +56,10 @@ double calculate_departmentSalesValue(struct employee *S, char department[10]);/
 
 void list_page(struct employee * S);//分页功能
 
+void list_out(struct employee * S);//其余功能分页显示
+
+void page(struct employee * S);//分页页码
+
 void sort_Salary(struct employee * S);//排序功能
 
 void statistics(struct employee *S);//统计功能
